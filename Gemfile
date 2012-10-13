@@ -7,7 +7,7 @@ gem 'execjs'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+
 
 
 # Gems used only for assets and not required
@@ -35,6 +35,11 @@ group :development, :test do
   gem 'database_cleaner' # to clear Cucumber's test database between runs
   gem 'capybara'         # lets Cucumber pretend to be a web browser
   gem 'launchy'          # a useful debugging aid for user stories
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg' # use PostgreSQL in production (Heroku)
 end
 
 # To use ActiveModel has_secure_password

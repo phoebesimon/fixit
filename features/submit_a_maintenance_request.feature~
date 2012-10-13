@@ -1,0 +1,24 @@
+Feature: submit a maintenance request
+
+  As a resident of the dorms
+  So that I can get things fixed
+  I want to be able to submit maintenance request
+
+Background: 
+  Given I am on the home page
+
+Scenario: submit a request for a room in Foothill
+  When I press the "submit a maintenance request" button
+  Then I should be on the request page
+  And I should see "Submit a Request"
+  And I enter "foothill" into the location field
+  And I enter "8d34d" into the room field
+  And I enter "light is broken" into the description field
+  And I press the "submit" button
+  Then I should be on the review page
+  And I should see that my location is "foothill"
+  And I should see that my room is "8d34d"
+  And I should see that my description is "light is broken"
+  And I press the "confirm" button
+  Then I should be on the home page
+  And I should see "request submitted"

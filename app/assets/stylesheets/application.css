@@ -1,0 +1,137 @@
+
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0F162C;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #3C3D3F;
+}
+div#main {
+  margin: 0;
+  padding: 0 20px 20px;
+}
+a {
+  background: transparent;
+  color: #00F;
+  text-decoration: underline;
+  font-weight: bold;
+}
+/*
+.front_page_button {
+    color: #000000;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px;  sliding doors padding 
+    text-decoration: none;
+    
+    color: #111111;
+    background-color: #111111;
+
+    
+}
+*/
+
+.centered_button_holder {
+  text-align: center;
+}
+
+.front_page_button {
+
+   width: 500px;
+   border-top: 1px solid #024c7d;
+   background: #5ab5ed;
+   background: -webkit-gradient(linear, left top, left bottom, from(#04446b), to(#5ab5ed));
+   background: -webkit-linear-gradient(top, #04446b, #5ab5ed);
+   background: -moz-linear-gradient(top, #04446b, #5ab5ed);
+   background: -ms-linear-gradient(top, #04446b, #5ab5ed);
+   background: -o-linear-gradient(top, #04446b, #5ab5ed);
+   padding: 20px 40px;
+   -webkit-border-radius: 11px;
+   -moz-border-radius: 11px;
+   border-radius: 11px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 24px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.front_page_button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.front_page_button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+
+
+
+a.button span {
+    background: transparent url('bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+} 
+h1 {
+  color: #70A2FF;
+  font-size: 150%;
+  font-style: italic;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid DarkSlateGrey;
+}
+h1.title {
+  margin: 0 0 1em;
+  padding: 10px;
+  background-color: #04446b;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: #E7C254;
+  border-bottom: 4px solid #E7C254;
+  font-size: 2em;
+  font-style: normal;
+}
+table#requests {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+table#requests th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+table#requests th, table#requests td {
+  padding: 4px;
+  text-align: left;
+}
+table#requests th.hilite {
+  background-color: yellow;
+}
+#notice #warning {
+  background: rosybrown;
+  margin: 1em 0;
+  padding: 4px;
+}
+form label {
+  display: block;
+  line-height: 25px;
+  font-weight: bold;
+  color: maroon;
+}

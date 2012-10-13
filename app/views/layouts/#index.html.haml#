@@ -1,0 +1,4 @@
+-# This file is app/view/layouts/index.html.haml
+%h1 Test
+
+= link_to 'Submit a Maintenance Request', 

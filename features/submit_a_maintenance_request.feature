@@ -32,7 +32,7 @@ Scenario Outline: submit a request: happy path
   And I should see "Request submitted"
   Examples:
    | name | phone number | email | zone | building | area | description |
-   | Phoebe Simon | 18185192118  | phoebesimon@hotmail.com| Unit 4 | FH Building 8 | 8C42C | Light is broken |
+   | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken |
 
 Scenario Outline: submit a request: sad path, missing required information
   When I press the "submit a maintenance request" button
@@ -50,13 +50,32 @@ Scenario Outline: submit a request: sad path, missing required information
   Examples:
    | name | phone number | email | zone | building | area | description | error |
    | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | |
-   | | 18185192118  | phoebesimon@hotmail.com| Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a name |
-   | Phoebe Simon |  | phoebesimon@hotmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a phone number |
+   | | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a name |
+   | Phoebe Simon |  | phoebesimon@berkeley.edu | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a phone number |
    | Phoebe Simon | 18185192118 | | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter an email address |
-   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com|  | FH Building 8 | 8C42C | Light is broken | Enter a zone |
-   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com| Unit 4 | | 8C42C | Light is broken | Enter a building |
-   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com| Unit 4 | FH Building 8 | | Light is broken | Enter a room |
-   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com| Unit 4 | FH Building 8 | 8C42C | | Enter a description |
-   | | | phoebesimon@hotmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter these fields: name, phone number |
+   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu|  | FH Building 8 | 8C42C | Light is broken | Enter a zone |
+   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 4 | | 8C42C | Light is broken | Enter a building |
+   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | | Light is broken | Enter a room |
+   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | | Enter a description |
+   | | | phoebesimon@berkeley.edu | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter these fields: name, phone number |
    | | | | | | | | Enter these fields: name, phone number, email, zone, building, area, description, error |
+
+Scenario Outline: submit a request: sad path, invalid information
+  When I press the "submit a maintenance request" button
+  Then I should be on the request page
+  And I should see "Submit a Request"
+  And I enter "<name>" into the "name" field
+  And I enter "<phone number>" into the "phone number" field
+  And I enter "<email>" into the "email" field
+  And I enter "<zone>" into the "zone" field
+  And I enter "<building>" into the "building" field
+  And I enter "<area>" into the "area" field
+  And I enter "<description>" into the "description" field
+  And I press the "submit" button
+  Then the errror "<error>" should appear
+  Examples:
+   | name | phone number | email | zone | building | area | description | error |
+   | Phoebe Simon | 5192118 | phoebesimon@berkeley.edu | Unit 4 | FH Building 8 | 8C42C | Light is broken | Invalid phone number |
+   | Phoebe Simon | 18185192118 | phoebesimon@gmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a valid @berkeley.edu email address |
+
 

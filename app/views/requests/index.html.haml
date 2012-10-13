@@ -1,3 +1,7 @@
-%a
-  = button_to 'Submit a Maintenance Request', new_request_path, :class => "button"
-  = button_to 'Check a Maintenance Request', request_path(1), :class => "button"
+.centered_button_holder
+  = button_to 'Submit a Maintenance Request', new_request_path, :class => "front_page_button"
+
+  %br
+  %br
+
+  = button_to 'Check a Maintenance Request', request_path(1), :class => "front_page_button"

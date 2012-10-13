@@ -24,16 +24,63 @@ a {
   text-decoration: underline;
   font-weight: bold;
 }
-button {
+/*
+.front_page_button {
     color: #000000;
     display: block;
     float: left;
     font: normal 12px arial, sans-serif;
     height: 24px;
     margin-right: 6px;
-    padding-right: 18px; /* sliding doors padding */
+    padding-right: 18px;  sliding doors padding 
     text-decoration: none;
+    
+    color: #111111;
+    background-color: #111111;
+
+    
 }
+*/
+
+.centered_button_holder {
+  text-align: center;
+}
+
+.front_page_button {
+
+   width: 500px;
+   border-top: 1px solid #024c7d;
+   background: #5ab5ed;
+   background: -webkit-gradient(linear, left top, left bottom, from(#04446b), to(#5ab5ed));
+   background: -webkit-linear-gradient(top, #04446b, #5ab5ed);
+   background: -moz-linear-gradient(top, #04446b, #5ab5ed);
+   background: -ms-linear-gradient(top, #04446b, #5ab5ed);
+   background: -o-linear-gradient(top, #04446b, #5ab5ed);
+   padding: 20px 40px;
+   -webkit-border-radius: 11px;
+   -moz-border-radius: 11px;
+   border-radius: 11px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 24px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.front_page_button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.front_page_button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+
+
 
 a.button span {
     background: transparent url('bg_button_span.gif') no-repeat;
@@ -52,9 +99,10 @@ h1 {
 h1.title {
   margin: 0 0 1em;
   padding: 10px;
-  background-color: #312D56;
-  color: #BCA429;
-  border-bottom: 4px solid #BCA429;
+  background-color: #04446b;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: #E7C254;
+  border-bottom: 4px solid #E7C254;
   font-size: 2em;
   font-style: normal;
 }

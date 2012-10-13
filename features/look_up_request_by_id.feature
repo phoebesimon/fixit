@@ -5,8 +5,8 @@ Feature: look up a previously submitted maintenance request by id
   I want to be able to search for requests by their ID number
   
 Background:
-  Given that I have submitted the following requests:
-   | name | phone number | email | zone | building | area | description | work request number | date request |
+  Given I have submitted the following requests:
+   | name | phone number | email | zone | building | area | description | work request number | date requested |
    | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken | 000001 | Dec 19, 1991 |
 
   Given I am on the request status page

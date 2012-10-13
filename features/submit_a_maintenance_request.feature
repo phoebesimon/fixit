@@ -2,7 +2,7 @@ Feature: submit a maintenance request
 
   As a resident of the dorms
   So that I can get things fixed
-  I want to be able to submit maintenance request
+  I want to be able to a submit maintenance request
 
 Background:
   Given I am on the home page
@@ -48,4 +48,15 @@ Scenario Outline: submit a request: sad path, missing required information
   And I press the "submit" button
   Then the errror "<error>" should appear
   Examples:
+   | name | phone number | email | zone | building | area | description | error |
+   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | |
+   | | 18185192118  | phoebesimon@hotmail.com| Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a name |
+   | Phoebe Simon |  | phoebesimon@hotmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a phone number |
+   | Phoebe Simon | 18185192118 | | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter an email address |
+   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com|  | FH Building 8 | 8C42C | Light is broken | Enter a zone |
+   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com| Unit 4 | | 8C42C | Light is broken | Enter a building |
+   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com| Unit 4 | FH Building 8 | | Light is broken | Enter a room |
+   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com| Unit 4 | FH Building 8 | 8C42C | | Enter a description |
+   | | | phoebesimon@hotmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter these fields: name, phone number |
+   | | | | | | | | Enter these fields: name, phone number, email, zone, building, area, description, error |
 

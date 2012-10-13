@@ -1,2 +1,3 @@
-%h2 Test
-= button_to 'Submit a Maintenance Request', new_request_path
+%a
+  = button_to 'Submit a Maintenance Request', new_request_path, :class => "button"
+  = button_to 'Check a Maintenance Request', request_path(1), :class => "button"

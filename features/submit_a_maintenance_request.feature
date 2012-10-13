@@ -61,7 +61,7 @@ Scenario Outline: submit a request: sad path, missing required information
    | | | | | | | | Enter these fields: name, phone number, email, zone, building, area, description, error |
 
 Scenario Outline: submit a request: sad path, invalid information
-  When I press the "submit a maintenance request" button
+  When I press "submit a maintenance request"
   Then I should be on the request page
   And I should see "Submit a Request"
   When I fill in "name" with "<name>"

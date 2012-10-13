@@ -1,8 +1,8 @@
 Feature: submit a maintenance request
 
   As a resident of the dorms
-  So that I can get things fixed
-  I want to be able to a submit maintenance request
+  So that I can find out when my issue will be resolved
+  I want to be able to view the status of my submitted requests
 
 Background:
   Given I am on the home page

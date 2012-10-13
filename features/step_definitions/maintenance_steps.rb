@@ -1,3 +1,5 @@
+@logged = false
+
 Given /^I have submitted the following requests:$/ do |table|
   table.hashes.each do |request|
     new_request = {}
@@ -24,5 +26,26 @@ Then /^(?:|I )should see that my "(.+?)" is "(.+?)"$/ do |fieldname, value|
   else
     assert page.has_content?(text)
   end
+end
+
+Given /^I am not logged in$/ do
+  flunk("don't know how to log in through cas yet")
+end
+
+Then /^I log in$/ do
+  flunk("don't know how to log in yet have to talk to fox")
+end
+
+Given /^I am logged in$/ do
+  flunk("still don't know how to log in yet")
+end
+
+Then /^I should be logged in$/ do
+  flunk("don't know how to log in yet, so no")
+end
+
+
+Then /^I should not be logged in$/ do
+  assert (@logged == false)
 end
 

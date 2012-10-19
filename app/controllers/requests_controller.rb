@@ -4,4 +4,5 @@ class RequestsController < ApplicationController
   end
   def search
   end
+
 end

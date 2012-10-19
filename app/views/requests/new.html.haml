@@ -1,0 +1,35 @@
+%h1 Submit A Request
+
+Select Building:
+
+= form_tag requests_path do
+  
+  = label :request, :zone, 'Zone'
+  = select :request, :zone, ['Unit 1', 'Unit 2']
+  -#  = select :request, :zone, getZones
+
+  = label :request, :building, 'Building'
+  = select :request, :building, ['Building 1', 'Building 2']
+  -#  = select :request, :building, getBuildings
+
+  = label :request, :name, 'Name'
+  = text_field :request, 'name'
+
+  = label :request, :phone, 'Phone Number'
+  = text_field :request, 'phone'
+
+  = label :request, :email, 'Email'
+  = text_field :request, 'email'
+
+  = label :request, :area, 'Area'
+  = select :request, :area, ['Stairway', 'Room', 'Balcony']
+  -#  = select :request, :area, getArea
+
+  = label :request, :description, 'Request Description'
+  = text_field :request, 'description'
+  %br
+  = submit_tag "Submit"
+
+%br
+.centered_button_holder
+= button_to "Back to Home", '/requests', :class => "front_page_button"

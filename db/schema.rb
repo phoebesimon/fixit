@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012234058) do
+ActiveRecord::Schema.define(:version => 20121013183724) do
 
   create_table "requests", :force => true do |t|
-    t.string   "user_name"
+    t.string   "name"
     t.string   "phone"
     t.string   "email"
     t.string   "zone"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20121012234058) do
     t.datetime "reject_date"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.string   "area"
+    t.string   "request_number"
   end
 
 end

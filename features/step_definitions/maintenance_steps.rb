@@ -44,7 +44,7 @@ Then /^(?:|I )should see that my "(.+?)" is "(.+?)"$/ do |fieldname, value|
   #end
 end
 
-And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |name, phone, email, zone, building, area, description|
+And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |name, phone, email, zone, building, area, description|
 
   step %{I should see that my "Description" is "#{description}"}
   step %{I should see that my "Zone" is "#{zone}"}

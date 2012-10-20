@@ -9,7 +9,9 @@ class RequestsController < ApplicationController
     request_hash = params[:request]
     area = Area.find_by_name(request_hash[:area])
     @request = Request.create!(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => request_hash[:email], :description => request_hash[:description], :area => area)
-    flash[:notice] = "Request was sent successfully"
+    @request.status = 'pending'
+    @request.save!
+    flash[:notice] = "Request submitted"
     redirect_to request_path(@request.id)
   end
 

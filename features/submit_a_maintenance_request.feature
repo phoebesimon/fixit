@@ -13,7 +13,7 @@ Scenario Outline: submit a request: happy path
   And I should see "Submit a Request"
   When I enter "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>"
   And I press "submit"
-  Then I should be on the review page
+  Then the page I should be on is the review page 
   And I should see that "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>" are present
   And I should see "Request submitted"
   Then I press "home"
@@ -21,7 +21,7 @@ Scenario Outline: submit a request: happy path
 
   Examples:
    | name | phone number | email | zone | building | area | description |
-   | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken |
+   | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken |
 
 Scenario Outline: submit a request: sad path, missing required information
   When I press "submit a maintenance request"
@@ -38,15 +38,15 @@ Scenario Outline: submit a request: sad path, missing required information
   Then I should see "<error>"
   Examples:
    | name | phone number | email | zone | building | area | description | error |
-   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | |
-   | | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a name |
-   | Phoebe Simon |  | phoebesimon@berkeley.edu | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a phone number |
-   | Phoebe Simon | 18185192118 | | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter an email address |
-   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu|  | FH Building 8 | 8C42C | Light is broken | Enter a zone |
-   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 4 | | 8C42C | Light is broken | Enter a building |
-   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | | Light is broken | Enter a room |
-   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | | Enter a description |
-   | | | phoebesimon@berkeley.edu | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter these fields: name, phone number |
+   | Phoebe Simon | 18185192118 | phoebesimon@hotmail.com | Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken | |
+   | | 18185192118  | phoebesimon@berkeley.edu| Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken | Enter a name |
+   | Phoebe Simon |  | phoebesimon@berkeley.edu | Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken | Enter a phone number |
+   | Phoebe Simon | 18185192118 | | Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken | Enter an email address |
+   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu|  | Cunningham Hall | 102, Bedroom 102 | Light is broken | Enter a zone |
+   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 2 | | 102, Bedroom 102 | Light is broken | Enter a building |
+   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 2 | Cunningham Hall | | Light is broken | Enter a room |
+   | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 2 | Cunningham Hall | 102, Bedroom 102 | | Enter a description |
+   | | | phoebesimon@berkeley.edu | Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken | Enter these fields: name, phone number |
    | | | | | | | | Enter these fields: name, phone number, email, zone, building, area, description, error |
 
 Scenario Outline: submit a request: sad path, invalid information
@@ -64,5 +64,5 @@ Scenario Outline: submit a request: sad path, invalid information
   Then I should see "<error>"
   Examples:
    | name | phone number | email | zone | building | area | description | error |
-   | Phoebe Simon | 5192118 | phoebesimon@berkeley.edu | Unit 4 | FH Building 8 | 8C42C | Light is broken | Invalid phone number |
-   | Phoebe Simon | 18185192118 | phoebesimon@gmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a valid @berkeley.edu email address |
+   | Phoebe Simon | 5192118 | phoebesimon@berkeley.edu | Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken | Invalid phone number |
+   | Phoebe Simon | 18185192118 | phoebesimon@gmail.com | Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken | Enter a valid @berkeley.edu email address |

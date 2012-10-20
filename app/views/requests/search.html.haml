@@ -1,0 +1,9 @@
+%h1 Find a Request by ID
+
+= form_tag "/requests/do_search", :id => "Search" do 
+  
+  = label :request, :id, 'Request Id'
+  = text_field :search, 'request_id'
+  %br
+  = submit_tag "Search"
+= button_to "Back to Home", '/requests', :class => "front_page_button", :method => :get, :id=>"home"

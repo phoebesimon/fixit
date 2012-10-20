@@ -25,7 +25,20 @@ class RequestsController < ApplicationController
 
   def show
     id = params[:id]
-    @request = Request.find(id)
+    @request = Request.find_by_id(id)
+    if(@request.nil?)
+      flash[:notice] = "There is no request with the specified id: " + id
+      redirect_to requests_path
+      return
+    end
+  end
+
+  def search
+
+  end
+
+  def do_search
+    redirect_to "/requests/#{params[:search]['request_id']}"
   end
 
   def new

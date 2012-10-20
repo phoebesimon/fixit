@@ -7,7 +7,7 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.create!(params[:request])
-    flash[:notice] = "Request was sent successfully"
+    flash[:notice] = "Request submitted"
     redirect_to request_path(@request.id)
   end
 

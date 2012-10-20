@@ -8,28 +8,17 @@ Background:
   Given I am on the home page
 
 Scenario Outline: submit a request: happy path
-  When I press "submit a maintenance request"
+  When I press "submit_request"
   Then I should be on the request page
   And I should see "Submit a Request"
-  When I fill in "name" with "<name>"
-  And I fill in "phone number" with "<phone number>"
-  And I fill in "email" with "<email>"
-  And I fill in "zone" with "<zone>"
-  And I fill in "building" with "<building>"
-  And I fill in "area" with "<area>"
-  And I fill in "description" with "<description>"
+  When I enter "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>"
   And I press "submit"
   Then I should be on the review page
-  And I should see that my "name" is "<name>"
-  And I should see that my "phone number" is "<phone number>"
-  And I should see that my "email" is "<email>"
-  And I should see that my "zone" is "<zone>"
-  And I should see that my "building" is "<building>"
-  And I should see that my "area" is "<area>"
-  And I should see that my "description" is "<description>"
-  When I press "confirm"
-  Then I should be on the fixit home page
+  And I should see that "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>" are present
   And I should see "Request submitted"
+  Then I press "home"
+  Then I should be on the home page
+
   Examples:
    | name | phone number | email | zone | building | area | description |
    | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken |
@@ -77,5 +66,3 @@ Scenario Outline: submit a request: sad path, invalid information
    | name | phone number | email | zone | building | area | description | error |
    | Phoebe Simon | 5192118 | phoebesimon@berkeley.edu | Unit 4 | FH Building 8 | 8C42C | Light is broken | Invalid phone number |
    | Phoebe Simon | 18185192118 | phoebesimon@gmail.com | Unit 4 | FH Building 8 | 8C42C | Light is broken | Enter a valid @berkeley.edu email address |
-
-

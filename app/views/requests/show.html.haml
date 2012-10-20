@@ -1,0 +1,21 @@
+%h1 Your Request
+
+%ul
+ %li
+  Description:
+  = @request.description
+ %li
+  Location:
+  = @request.area
+ %li
+  Current Status: 
+  =@request.status
+ %li
+  Location ID:
+  =@request.location_id
+ %li
+  Date Requested:
+  =@request.created_at
+
+
+= button_to "Back to Home", '/requests', :class => "front_page_button", :method => :get

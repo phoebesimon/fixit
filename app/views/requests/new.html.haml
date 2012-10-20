@@ -1,7 +1,5 @@
 %h1 Submit A Request
 
-Select Building:
-
 = form_tag requests_path do
   
   = label :request, :zone, 'Zone'
@@ -32,4 +30,4 @@ Select Building:
 
 %br
 .centered_button_holder
-= button_to "Back to Home", '/requests', :class => "front_page_button"
+= button_to "Back to Home", '/requests', :class => "front_page_button", :method => :get

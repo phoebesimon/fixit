@@ -4,4 +4,15 @@ class RequestsController < ApplicationController
   end
   def search
   end
+
+  def create
+    @request = Request.create!(params[:request])
+    flash[:notice] = "Request was sent successfully"
+    redirect_to request_path(@request.id)
+  end
+
+  def show
+    id = params[:id]
+    @request = Request.find(id)
+  end
 end

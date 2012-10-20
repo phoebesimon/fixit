@@ -1,6 +1,6 @@
-%h1 Submit A Request
+%h1 Submit a Request
 
-= form_tag requests_path do
+= form_tag requests_path, :id => "Submit a Request" do 
   
   = label :request, :zone, 'Zone'
   = select :request, :zone, ['Unit 1', 'Unit 2']
@@ -30,4 +30,4 @@
 
 %br
 .centered_button_holder
-= button_to "Back to Home", '/requests', :class => "front_page_button", :method => :get
+= button_to "Back to Home", '/requests', :class => "front_page_button", :method => :get, :id => "home"

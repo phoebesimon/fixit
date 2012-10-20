@@ -1,5 +1,15 @@
 @logged = false
 
+When /^I enter "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)"/ do |name, phone, email, zone, building, area, description|
+  step %{I fill in "request_name" with "#{name}"}
+  And %{I fill in "request_phone" with "#{phone}"}
+  And %{I fill in "request_email" with "#{email}"}
+  And %{I fill in "zone" with "#{zone}"}
+  And %{I fill in "building" with "#{building}"}
+  And %{I fill in "area" with "#{area}"}
+  And %{I fill in "description" with "#{description}"}
+end
+
 Given /^I have submitted the following requests:$/ do |table|
   table.hashes.each do |request|
     new_request = {}
@@ -26,6 +36,17 @@ Then /^(?:|I )should see that my "(.+?)" is "(.+?)"$/ do |fieldname, value|
   else
     assert page.has_content?(text)
   end
+end
+
+And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |name, phone, email, zone, building, area, description|
+
+  And %{I should see that my "name" is "#{name}"}
+  And %{I should see that my "phone number" is "#{phone}"}
+  And %{I should see that my "email" is "#{email}"}
+  And %{I should see that my "zone" is "#{email}"}
+  And %{I should see that my "building" is "#{building}"}
+  And %{I should see that my "area" is "#{area}"}
+  And %{I should see that my "description" is "#{decription}"}
 end
 
 Given /^I am not logged in$/ do

@@ -16,6 +16,9 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/requests'
 
+    when /^the request page$/
+      '/requests/new'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

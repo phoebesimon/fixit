@@ -18,11 +18,14 @@ end
 Given /^I have submitted the following requests:$/ do |table|
   table.hashes.each do |request|
     new_request = {}
+    area = Area.create!(:name=>request["area"], :building => Building.create!(:name=>request["building"], :zone => Zone.create!(:name =>request["zone"])))
+    new_request["area"] = area
     request.each_key do |key|
-      if(key == "phone number")
-        new_request["phone"] = request[key]
-      elsif(key == "work request number")
-        new_request["request_number"] = request[key]
+      if(key == "work request number")
+        new_request["id"] = request[key]
+      elsif(key == "building")
+      elsif(key == "zone")
+      elsif(key == "area")
       elsif(key == "date requested")
         new_request["created_at"] = request[key]
       else
@@ -32,7 +35,9 @@ Given /^I have submitted the following requests:$/ do |table|
     Request.create!(new_request)
   end
 end
-
+Then /^I should puts something$/ do
+  puts current_url
+end
 
 Then /^(?:|I )should see that my "(.+?)" is "(.+?)"$/ do |fieldname, value|
   text = /#{fieldname}:\s*#{value}/
@@ -51,7 +56,7 @@ And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |nam
   step %{I should see that my "Building" is "#{building}"}
   step %{I should see that my "Location" is "#{area}"}
   step %{I should see that my "Current Status" is "pending"}
-  
+
 end
 
 Given /^I am not logged in$/ do

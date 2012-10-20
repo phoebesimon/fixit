@@ -50,8 +50,8 @@ Fixit::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
   resources :requests
-  match "requests/search" => "requests#search", :as => "search"
-  match "requests/do_search" => "requests#do_search"
+  match "request/search" => "requests#search", :as => "search"
+  match "request/do_search" => "requests#do_search"
   root :to => redirect('/requests')
 
   # See how all your routes lay out with "rake routes"

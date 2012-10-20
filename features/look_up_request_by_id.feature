@@ -6,27 +6,24 @@ Feature: look up a previously submitted maintenance request by id
   
 Background:
   Given I have submitted the following requests:
-   | name | phone number | email | zone | building | area | description | work request number | date requested |
-   | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken | 000001 | Dec 19, 1991 |
+   | name | phone | email | zone | building | area | description | work request number | date requested |
+   | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken | 1 | Dec 19, 1991 |
 
-  Given I am on the request status page
+  Given I am on the search page
 
 Scenario: happy path, look up a previouly submitted request
-  Given I fill in "request id" with "000001"
+  Given I fill in "search_request_id" with "1"
   And I press "Search"
-  Then I should be on the details page
-  And I should see "Phoebe Simon"
-  And I should see "18185192118"
-  And I should see "phoebesimon@berkeley.edu"
+  Then I should be on the review page for "1"
   And I should see "Unit 4"
   And I should see "FH Building 8"
   And I should see "8C42C"
   And I should see "Light is broken"
-  And I should see "000001"
+  And I should see "1"
     
 Scenario: sad path, look up a request that does not exist
-  Given I fill in "request id" with "000002"
+  Given I fill in "search_request_id" with "2"
   And I press "Search"
-  Then I should be on the request status page
-  And I should see "Request 000002 does not exist"
+  Then I should be on the home page
+  And I should see "There is no request with the specified id: 2"
 

@@ -1,13 +1,18 @@
 @logged = false
 
+Then /^the page I should be on is the review page$/ do
+  current_path = URI.parse(current_url).path
+  /\/requests\/\d+/ =~ current_path
+end
+
 When /^I enter "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)"/ do |name, phone, email, zone, building, area, description|
   step %{I fill in "request_name" with "#{name}"}
-  And %{I fill in "request_phone" with "#{phone}"}
-  And %{I fill in "request_email" with "#{email}"}
-  And %{I fill in "zone" with "#{zone}"}
-  And %{I fill in "building" with "#{building}"}
-  And %{I fill in "area" with "#{area}"}
-  And %{I fill in "description" with "#{description}"}
+  step %{I fill in "request_phone" with "#{phone}"}
+  step %{I fill in "request_email" with "#{email}"}
+  step %{I select "#{zone}" from "request_zone"}
+  step %{I select "#{building}" from "request_building"}
+  step %{I select "#{area}" from "request_area"}
+  step %{I fill in "request_description" with "#{description}"}
 end
 
 Given /^I have submitted the following requests:$/ do |table|
@@ -30,23 +35,23 @@ end
 
 
 Then /^(?:|I )should see that my "(.+?)" is "(.+?)"$/ do |fieldname, value|
-  text = "#{fieldname}: #{value}"
-  if page.respond_to? :should
-    page.should have_content(text)
-  else
-    assert page.has_content?(text)
-  end
+  text = /#{fieldname}:\s*#{value}/
+  #  if page.respond_to? :should
+  #   page.should have_content(text), :error => ""
+  # else
+  match = (text =~ page.body)
+  assert_not_equal(match.to_s, '',"The text was: "+text.to_s+". The page was " + page.body)
+  #end
 end
 
 And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |name, phone, email, zone, building, area, description|
 
-  And %{I should see that my "name" is "#{name}"}
-  And %{I should see that my "phone number" is "#{phone}"}
-  And %{I should see that my "email" is "#{email}"}
-  And %{I should see that my "zone" is "#{email}"}
-  And %{I should see that my "building" is "#{building}"}
-  And %{I should see that my "area" is "#{area}"}
-  And %{I should see that my "description" is "#{decription}"}
+  step %{I should see that my "Description" is "#{description}"}
+  step %{I should see that my "Zone" is "#{zone}"}
+  step %{I should see that my "Building" is "#{building}"}
+  step %{I should see that my "Location" is "#{area}"}
+  step %{I should see that my "Current Status" is "pending"}
+  
 end
 
 Given /^I am not logged in$/ do

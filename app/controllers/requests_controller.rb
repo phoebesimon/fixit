@@ -1,18 +1,25 @@
 class RequestsController < ApplicationController
   def index
-
   end
+
   def search
   end
 
   def create
     request_hash = params[:request]
     area = Area.find_by_name(request_hash[:area])
-    @request = Request.create!(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => request_hash[:email], :description => request_hash[:description], :area => area)
+
+    @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => request_hash[:email], :description => request_hash[:description], :area => area)
+
     @request.status = 'pending'
-    @request.save!
-    flash[:notice] = "Request submitted"
-    redirect_to request_path(@request.id)
+    if @request.save
+      flash[:notice] = "Request submitted"
+      redirect_to request_path(@request.id)
+    else
+      setup_areas
+      render 'new'
+    end
+    
   end
 
   def show
@@ -34,6 +41,12 @@ class RequestsController < ApplicationController
   end
 
   def new
+    setup_areas
+    @request = Request.new
+
+  end
+
+  def setup_areas
     @zones = Zone.all.map do |zone|
       zone.name
     end
@@ -43,7 +56,6 @@ class RequestsController < ApplicationController
     @areas = Area.all.map do |area|
       area.name
     end
-
   end
 
 end

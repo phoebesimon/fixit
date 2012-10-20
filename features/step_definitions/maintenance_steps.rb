@@ -5,7 +5,7 @@ Then /^the page I should be on is the review page$/ do
   /\/requests\/\d+/ =~ current_path
 end
 
-When /^I enter "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)", "(.+?)"/ do |name, phone, email, zone, building, area, description|
+When /^I enter "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)"/ do |name, phone, email, zone, building, area, description|
   step %{I fill in "request_name" with "#{name}"}
   step %{I fill in "request_phone" with "#{phone}"}
   step %{I fill in "request_email" with "#{email}"}
@@ -49,7 +49,7 @@ Then /^(?:|I )should see that my "(.+?)" is "(.+?)"$/ do |fieldname, value|
   #end
 end
 
-And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |name, phone, email, zone, building, area, description|
+And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |zone, building, area, description|
 
   step %{I should see that my "Description" is "#{description}"}
   step %{I should see that my "Zone" is "#{zone}"}

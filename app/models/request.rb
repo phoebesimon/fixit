@@ -3,5 +3,9 @@ class Request < ActiveRecord::Base
 
   belongs_to :user, :foreign_key => "user_id"
   belongs_to :area, :foreign_key => "area_id"
+  validates_presence_of :name, :message => "Enter a name"
+  validates_presence_of :description, :message => "Enter a description"
+  validates_format_of :phone, :with => /^[\(\)0-9\- \+\.]{10,20}$/, :message => "Enter a phone number"
+  validates_format_of :email, :with => /^[a-zA-Z0-9._-]+@berkeley.edu$/, :message => "Enter a Berkeley email address"
 
 end

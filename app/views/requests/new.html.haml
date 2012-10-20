@@ -3,11 +3,11 @@
 = form_tag requests_path, :id => "Submit a Request" do 
   
   = label :request, :zone, 'Zone'
-  = select :request, :zone, ['Unit 1', 'Unit 2']
+  = select :request, :zone, @zones
   -#  = select :request, :zone, getZones
 
   = label :request, :building, 'Building'
-  = select :request, :building, ['Building 1', 'Building 2']
+  = select :request, :building, @buildings
   -#  = select :request, :building, getBuildings
 
   = label :request, :name, 'Name'
@@ -20,7 +20,7 @@
   = text_field :request, 'email'
 
   = label :request, :area, 'Area'
-  = select :request, :area, ['Stairway', 'Room', 'Balcony']
+  = select :request, :area, @areas
   -#  = select :request, :area, getArea
 
   = label :request, :description, 'Request Description'

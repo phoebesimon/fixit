@@ -6,13 +6,16 @@
   = @request.description
  %li
   Location:
-  = @request.area
+  = @request.area.name
  %li
   Current Status: 
-  =@request.status
+  = @request.status
  %li
-  Location ID:
-  =@request.location_id
+  Building:
+  = @request.area.building.name
+ %li
+  Zone:
+  = @request.area.building.zone.name
  %li
   Date Requested:
   =@request.created_at

@@ -30,10 +30,10 @@ class RequestsController < ApplicationController
     @zones = Zone.all.map do |zone|
       zone.name
     end
-    @building = Building.all.map do |building|
+    @buildings = Building.all.map do |building|
       building.name
     end
-    @area = Area.all.map do |area|
+    @areas = Area.all.map do |area|
       area.name
     end
 

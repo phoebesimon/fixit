@@ -80,3 +80,35 @@ Then /^I should not be logged in$/ do
   assert (@logged == false)
 end
 
+Then /^all of the "(.*?)" in "(.*?)" should( not)? be in the "(.*?)" menu$/ do |child_type, parent_name, negate, menu_name|
+  puts negate
+  if(child_type == "areas")
+    parent = Building.find_by_name(parent_name)
+    children = Area.find(:all, :conditions => ["building_id = ?", parent.id])
+  elsif(child_type=="buildings")
+    parent = Zone.find_by_name(parent_name)
+    children = Building.find(:all, :conditions => ["zone_id = ?", parent.id])
+  else
+    flunk
+  end
+  #get html of drop down menu
+  #all names of children should be in the html of drop down menu
+  names = children.map do |child|
+    child.name
+  end
+  if(negate == " not")
+    assert page.has_no_select?(menu_name, :options=>names)
+  else
+    assert page.has_select?(menu_name, :options=>names)
+  end
+end
+
+Then /^"(.*?)" should( not)? be selected from "(.*?)"$/ do |name, negate, menu_name|
+
+  if(negate == " not")
+    assert page.has_no_field?(menu_name, :with=>name)
+  else
+    assert page.has_field?(menu_name, :with=>name)
+  end
+end
+

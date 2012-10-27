@@ -43,24 +43,19 @@ describe RequestsController do
     end
   end
   describe 'create controller method' do
-    it 'should create a request object, save it to the database, and create an email' do
-      @fake_area = mock('Area')
+    it 'should create an email and send it' do
+      @fake_area = Area.create!()
       Area.stub(:find_by_name).and_return(@fake_area)
       @request.env['GMAIL_USERNAME'] = "fake_username"
       @request.env['GMAIL_PASSWORD'] = "fake_password"
       @request.env['GMAIL_DEST'] = "fake_destination"
-      @fake_name = "fake_name"
-      @fake_request = mock('Request', :name => @fake_name)
-      Request.stub(:new).and_return(@fake_request)
-      @fake_request.stub(:to_s).and_return("fake_string_rep")
+      @subject_text = "[Maintenance Request Submitted] #{@fake_name} from #{@fake_area}"
       @fake_gmail_thing = mock('Gmail thing')
       @fake_gmail_thing.stub(:logout)
-      Gmail.stub(:connect!).and_return(@fake_gmail_thing)
-      @subject_text = "[Maintenance Request Submitted] #{@fake_name} from #{@fake_area}"
-      @fake_gmail_thing.should_receive(:deliver!).with("fake_destination", @subject_text, "fake_string_rep")
-      @fake_request.should_receive(:save)
+      @fake_gmail_thing.should_receive("deliver!")
+      Gmail.should_receive("connect!").and_return(@fake_gmail_thing)
+
       post :create, {:zone => "", :building => "", :name => "", :phone => "", :email => "", :description => "", :area => "", :request => {:area => @fake_area}}
     end
   end
-
 end

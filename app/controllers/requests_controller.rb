@@ -11,24 +11,7 @@ class RequestsController < ApplicationController
 
     @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => request_hash[:email], :description => request_hash[:description], :area => area)
     @request.status = 'pending'
-
     if @request.save
-      # send an email containing the maintenance request information
-      gmail_username = ENV['GMAIL_USERNAME'] #"ucbfixit@gmail.com"
-      gmail_password = ENV['GMAIL_PASSWORD'] #"ertcwERDSFgDOadf125423"
-      destination_address = ENV['GMAIL_DEST'] #"christopher.j.turney@gmail.com"
-
-      email_body = @request.to_s
-      subject_text = "[Maintenance Request Submitted] #{@request.name} from #{@request.area}"
-
-      gmail = Gmail.connect!(gmail_username, gmail_password)
-      gmail.deliver! do
-        to destination_address
-        subject subject_text
-        body email_body
-      end
-      gmail.logout
-
       flash[:notice] = "Request submitted"
       redirect_to request_path(@request.id)
     else

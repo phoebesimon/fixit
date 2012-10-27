@@ -9,7 +9,7 @@ class Request < ActiveRecord::Base
   validates_format_of :email, :with => /^[a-zA-Z0-9._-]+@berkeley.edu$/, :message => "Enter a Berkeley email address"
 
   def to_s
-    return "a"
-    #"Name: #{@name} \nPhone Number: #{@phone} \nEmail: #{@email} \nZone: #{@zone} \nBuilding: #{@building} \nArea: #{@area} \nCreated At: #{@created_at} \nDescription: #{@description}"
+    return "Name: #{name} \nPhone Number: #{phone} \nEmail: #{email} \nZone: #{zone} \nBuilding: #{building} \nArea: #{area} \nCreated At: #{created_at} \nDescription: #{description}"
   end
+
 end

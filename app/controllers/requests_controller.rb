@@ -10,32 +10,23 @@ class RequestsController < ApplicationController
     area = Area.find_by_name(request_hash[:area])
 
     @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => request_hash[:email], :description => request_hash[:description], :area => area)
-
     @request.status = 'pending'
+
     if @request.save
-      # send an email
-      #gmail = Gmail.connect(ENV['GMAIL_SMTP_USER'], ENV['GMAIL_SMTP_PASSWORD'])
-      logger.info @request.name
-      gmail = Gmail.connect!("ucbfixit@gmail.com", "ertcwERDSFgDOadf125423")
+      # send an email containing the maintenance request information
+      gmail_username = ENV['GMAIL_USERNAME'] #"ucbfixit@gmail.com"
+      gmail_password = ENV['GMAIL_PASSWORD'] #"ertcwERDSFgDOadf125423"
+      destination_address = ENV['GMAIL_DEST'] #"christopher.j.turney@gmail.com"
 
+      email_body = @request.to_s
+      subject_text = "[Maintenance Request Submitted] #{@request.name} from #{@request.area}"
 
+      gmail = Gmail.connect!(gmail_username, gmail_password)
       gmail.deliver! do
-        to "phoebesimon@hotmail.com"
-        subject "[Maintenance Request Submitted]"
-        text_part do
-          body "stuff"
-        end
+        to destination_address
+        subject subject_text
+        body email_body
       end
-
-=begin
-      gmail.deliver! do
-        to "phoebesimon@hotmail.com"
-        subject "[Maintenance Request Submitted] #{@request.name} from #{@request.area} "
-        text_part do
-          body @request.to_s
-        end
-      end
-=end
       gmail.logout
 
       flash[:notice] = "Request submitted"

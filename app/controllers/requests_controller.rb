@@ -13,8 +13,8 @@ class RequestsController < ApplicationController
     @request.status = 'pending'
     if @request.save
       # send an email containing the maintenance request information
-      gmail_username = ENV['GMAIL_USERNAME'] #"ucbfixit@gmail.com"
-      gmail_password = ENV['GMAIL_PASSWORD'] #"ertcwERDSFgDOadf125423"
+      gmail_username = "ucbfixit@gmail.com" #ENV['GMAIL_USERNAME']
+      gmail_password = "ertcwERDSFgDOadf125423" #ENV['GMAIL_PASSWORD']
       destination_address = "christopher.j.turney@gmail.com" #ENV['GMAIL_DEST']
 
       email_body = @request.to_s

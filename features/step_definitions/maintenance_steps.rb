@@ -1,5 +1,12 @@
 @logged = false
 
+
+
+Then /^(?:I|they|"([^"]*?)") should receive (an|no|\d+) emails?$/ do |address, amount|
+  Mail::TestMailer.deliveries.length > 0
+end
+
+
 Then /^the page I should be on is the review page$/ do
   current_path = URI.parse(current_url).path
   /\/requests\/\d+/ =~ current_path

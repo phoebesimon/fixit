@@ -14,6 +14,9 @@
   = label :request, :building, 'Building'
   = select :request, :building, @buildings
 
+  = label :request, :area, 'Area'
+  = select :request, :area, @areas
+
   = label :request, :name, 'Name'
   = text_field :request, 'name'
 
@@ -22,9 +25,6 @@
 
   = label :request, :email, 'Email'
   = text_field :request, 'email'
-
-  = label :request, :area, 'Area'
-  = select :request, :area, @areas
 
   = label :request, :description, 'Request Description'
   = text_field :request, 'description'

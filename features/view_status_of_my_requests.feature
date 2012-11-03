@@ -1,4 +1,4 @@
-Feature: submit a maintenance request
+Feature: view status of requests
 
   As a resident of the dorms
   So that I can find out when my issue will be resolved
@@ -11,7 +11,7 @@ Background:
    | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken | 000001 | 10/13/2012 |
 
 Scenario Outline: view the details of one of my requests: happy path
-  When I press "check the status of a request"
+  When I press "Check Status"
   Then I should be on the request status page
   And I should see "My Requests"
   And I should see "<area>"

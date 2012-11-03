@@ -6,6 +6,35 @@ Released for free under a Creative Commons Attribution 2.5 License
 */
 
 
+#ucb_icon_div{
+float:left;
+margin-right:10px;
+}
+
+#ucb_icon {
+width: 80px;
+}
+
+#header_text_div{
+float:left;
+}
+
+#header_text{
+text-shadow: rgba(0,0,0,.4) 0 1px 0;
+color: #E7C254;
+font-size: 2.2em;
+font-style: normal;
+#font-weight:bold;
+}
+
+#main_header{
+overflow:hidden;
+margin: 0 0 1em;
+padding: 10px;
+background-color: #04446b;
+border-bottom: 4px solid #E7C254;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -94,17 +123,7 @@ h1 {
   font-style: italic;
   display: block;
   width: 100%;
-  border-bottom: 1px solid DarkSlateGrey;
-}
-h1.title {
-  margin: 0 0 1em;
-  padding: 10px;
-  background-color: #04446b;
-  text-shadow: rgba(0,0,0,.4) 0 1px 0;
-  color: #E7C254;
-  border-bottom: 4px solid #E7C254;
-  font-size: 2em;
-  font-style: normal;
+  #border-bottom: 1px solid DarkSlateGrey;
 }
 table#requests {
   margin: 10px;

@@ -1,13 +1,18 @@
 !!! 5
 %html
   %head
+    = favicon_link_tag
     %title Maintenance Request
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
-    %h1.title Maintenance Request
+    #main_header
+      #ucb_icon_div
+        = image_tag '/images/ucb_icon.png', :id => 'ucb_icon'
+      #header_text_div
+        %h1.title{:id => 'header_text'} Maintenance Request
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]

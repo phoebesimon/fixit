@@ -1,8 +1,8 @@
 .centered_button_holder
-  = button_to 'Submit a Maintenance Request', new_request_path, :class => "front_page_button", :method => :get, :id => 'submit_request'
+  = button_to 'Submit', new_request_path, :class => "front_page_button", :method => :get, :id => 'submit_request'
 
   %br
   %br
 
-  = button_to 'Check a Maintenance Request', search_path(), :class => "front_page_button"
+  = button_to 'Check Status', search_path(), :class => "front_page_button"
 

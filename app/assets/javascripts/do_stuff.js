@@ -9,10 +9,10 @@ Fixit = {
 	var zone = $('#request_zone').val()
 	//alert("before ajax call: zone is " + zone);
         $.ajax({type: 'GET',
-                url: 'http://localhost:3000/zones/get_buildings/'+ zone,
+                url: '/zones/get_buildings/'+ zone,
                 timeout: 2000,
                 success: Fixit.updateBuildingPartial,
-                error: function() { alert('Error!'); }
+                error: function(jqXHR, textStatus, errorThrown) {alert("Ajax error: " + textStatus + " | Error Thrown is " + errorThrown);}
                });
 	//alert("after ajax call");
         return(false);

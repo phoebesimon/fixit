@@ -1,3 +1,4 @@
+@javascript
 Feature: Adaptive dropdown menus feature
 
   As a user
@@ -6,7 +7,7 @@ Feature: Adaptive dropdown menus feature
 
 Background:
   Given I am on the request page
- 
+
 Scenario: filter buildings: happy path
 
   When I select "Unit 2" from "request_zone"
@@ -23,7 +24,6 @@ Scenario: filter locations: happy path
   And I select "Cunningham Hall" from "request_building"
   Then all of the "areas" in "Cunningham Hall" should be in the "request_area" menu
   And all of the "areas" in "Martinez Commons" should not be in the "request_area" menu
-
 Scenario: filter location: sad path (don't actually filter buildings)
 
   Then all of the "areas" in "Cunningham Hall" should be in the "request_area" menu

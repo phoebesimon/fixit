@@ -1,20 +1,24 @@
 Fixit = {
     setup: function() { 
-	$('#request_zone').change(Fixit.onZoneChange);//pass selected zone
+	$('#request_zone').focus(Fixit.onZoneChange).change(Fixit.onZoneChange);//pass selected zone
     },
     onZoneChange: function(){
 	Fixit.getZoneInfo()
     },
     getZoneInfo: function() {
-	alert("before ajax call");
+	var zone = $('#request_zone').val()
+	//alert("before ajax call: zone is " + zone);
         $.ajax({type: 'GET',
-                url: 'http://localhost:3000/zones/get_buildings/Unit_1',
-                timeout: 10,
-                success: function(){alert('success!');},
+                url: 'http://localhost:3000/zones/get_buildings/'+ zone,
+                timeout: 2000,
+                success: Fixit.updateBuildingPartial,
                 error: function() { alert('Error!'); }
                });
-	alert("after ajax call");
+	//alert("after ajax call");
         return(false);
+    },
+    updateBuildingPartial: function(data){
+	$('#request_building').replaceWith(data)
     }
 };
 $(Fixit.setup);

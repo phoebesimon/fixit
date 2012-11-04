@@ -1,11 +1,20 @@
 @logged = false
 
+#still to do / make sure this stuff works
+=begin
+Then /^"(.+?)" should receive an email$/ do |address|
+  puts "Deliveries: #{ActionMailer::Base.deliveries}"
 
-
-Then /^(?:I|they|"([^"]*?)") should receive (an|no|\d+) emails?$/ do |address, amount|
-  Mail::TestMailer.deliveries.length > 0
+  assert (ActionMailer::Base.deliveries.length > 0)
+  email = ActionMailer::Base.deliveries.last # does this work correctly?
+  puts "The received email: #{email}" # figure out the format of this email object thing
 end
 
+Then /^I should see "(.*?)" in the email body$/ do |arg1|
+  email = Mail::TestMailer.deliveries.last
+  #check that the email body contains arg1 - regex match
+end
+=end
 
 Then /^the page I should be on is the review page$/ do
   current_path = URI.parse(current_url).path

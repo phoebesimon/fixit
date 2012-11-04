@@ -17,9 +17,11 @@ class RequestsController < ApplicationController
       gmail_password = "ertcwERDSFgDOadf125423" #ENV['GMAIL_PASSWORD']
       destination_address = "christopher.j.turney@gmail.com" #ENV['GMAIL_DEST']
 
-      email_body = @request.to_s
+      email_body = @request.to_list
       subject_text = "[Maintenance Request Submitted] #{@request.name} from #{@request.area}"
 
+      UserMailer.request_created_email(email_body, subject_text).deliver!
+=begin
       Gmail.connect!(gmail_username, gmail_password) do |gmail|
         gmail.deliver! do
           to destination_address
@@ -27,7 +29,7 @@ class RequestsController < ApplicationController
           body email_body
         end
       end
-
+=end
       flash[:notice] = "Request submitted"
       redirect_to request_path(@request.id)
     else

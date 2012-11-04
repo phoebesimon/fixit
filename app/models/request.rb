@@ -12,4 +12,8 @@ class Request < ActiveRecord::Base
     return "Name: #{name} \nPhone Number: #{phone} \nEmail: #{email} \nZone: #{zone} \nBuilding: #{building} \nArea: #{area} \nCreated At: #{created_at} \nDescription: #{description}"
   end
 
+  def to_list
+    return ["Name: #{name}", "Phone Number: #{phone}", "Email: #{email}", "Zone: #{zone}", "Building: #{building}", "Area: #{area}", "Created_at: #{created_at}", "Description: #{description}"]
+  end
+
 end

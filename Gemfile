@@ -62,4 +62,8 @@ group :development, :test do
   gem 'simplecov'
 end
 
-gem 'gmail'
+group :test do
+  gem 'email_spec'
+end
+
+gem 'actionmailer'

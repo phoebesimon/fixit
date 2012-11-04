@@ -42,20 +42,4 @@ describe RequestsController do
       response.should render_template(:action => "index")
     end
   end
-  describe 'create controller method' do
-    it 'should create an email and send it' do
-      @fake_area = Area.create!()
-      Area.stub(:find_by_name).and_return(@fake_area)
-      @request.env['GMAIL_USERNAME'] = "fake_username"
-      @request.env['GMAIL_PASSWORD'] = "fake_password"
-      @request.env['GMAIL_DEST'] = "fake_destination"
-      @subject_text = "[Maintenance Request Submitted] #{@fake_name} from #{@fake_area}"
-      @fake_gmail_thing = mock('Gmail thing')
-      @fake_gmail_thing.stub(:logout)
-      @fake_gmail_thing.should_receive("deliver!")
-      Gmail.should_receive("connect!").and_return(@fake_gmail_thing)
-
-      post :create, {:zone => "", :building => "", :name => "", :phone => "", :email => "", :description => "", :area => "", :request => {:area => @fake_area}}
-    end
-  end
 end

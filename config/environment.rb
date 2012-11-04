@@ -12,9 +12,8 @@ ActionMailer::Base.smtp_settings = {
 :address => "smtp.gmail.com",
 :port => 587,
 :authentication => :plain,
-:domain => ENV['GMAIL_USERNAME'] #"ucbfixit@gmail.com",
-:user_name => ENV['GMAIL_USERNAME'] #"ucbfixit@gmail.com",
+:domain => ENV['GMAIL_USERNAME'],
+:user_name => ENV['GMAIL_USERNAME'],
 :password => ENV['GMAIL_PASSWORD']
 }
-
 

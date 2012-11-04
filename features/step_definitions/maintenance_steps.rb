@@ -16,6 +16,19 @@ Then /^I should see "(.*?)" in the email body$/ do |arg1|
 end
 =end
 
+Then /^the "(.*?)" should say "(.*?)"$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+
+Then /^the destination should receive an email$/ do
+  step %Q{"#{ENV['GMAIL_DEST']}" should receive an email}
+end
+
+Given /^PENDING/ do
+  pending
+end
+
 Then /^the page I should be on is the review page$/ do
   current_path = URI.parse(current_url).path
   /\/requests\/\d+/ =~ current_path

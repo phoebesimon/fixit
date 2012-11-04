@@ -6,11 +6,13 @@ Feature: view status of requests
 
 Background:
   Given I am on the home page
+  Given PENDING background
   And I have submitted the following requests:
    | name | phone number | email | zone | building | area | description | work request number | date requested |
    | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken | 000001 | 10/13/2012 |
 
 Scenario Outline: view the details of one of my requests: happy path
+  Given PENDING view the details of one of my requests: happy path
   When I press "Check Status"
   Then I should be on the request status page
   And I should see "My Requests"

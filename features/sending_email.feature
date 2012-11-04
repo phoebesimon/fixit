@@ -15,7 +15,7 @@ Scenario Outline: An email is generated and sent upon request creation
   And I press "submit"
   Then the page I should be on is the review page
   And I should see "Request submitted" 
-  Then "christopher.j.turney@gmail.com" should receive an email
+  Then the destination should receive an email
   When I open the email
   And I should see "Name: Phoebe Simon" in the email body
   And I should see "Phone Number: 18185192118" in the email body

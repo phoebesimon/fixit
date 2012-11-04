@@ -52,6 +52,10 @@ Then /^(?:I|they|"([^"]*?)") should receive (an|no|\d+) emails?$/ do |address, a
   unread_emails_for(address).size.should == parse_email_count(amount)
 end
 
+Then /^the destination should receive an email$/ do
+  step "#{ENV['GMAIL_DEST']} should receive an email"
+end
+
 Then /^(?:I|they|"([^"]*?)") should have (an|no|\d+) emails?$/ do |address, amount|
   mailbox_for(address).size.should == parse_email_count(amount)
 end

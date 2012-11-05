@@ -15,7 +15,7 @@
   = render :partial => 'buildings'
 
   = label :request, :area, 'Area'
-  = select :request, :area, @areas
+  = render :partial => 'areas'
 
   = label :request, :name, 'Name'
   = text_field :request, 'name'

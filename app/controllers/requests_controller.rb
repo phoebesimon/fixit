@@ -52,15 +52,15 @@ class RequestsController < ApplicationController
   end
 
   def setup_areas
-    @zones = Zone.all.map do |zone|
-      zone.name
+    @zones = []
+    Zone.all.each do |zone|
+      @zones << zone.name
     end
     @buildings = Building.all.map do |building|
       building.name
     end
-    @areas = Area.all.map do |area|
-      area.name
-    end
+    @areas =["Choose a building first"]
+      #Area.all.map {|area|   area.name  }
   end
 
 end

@@ -1,0 +1,8 @@
+Scenario: reverse filtering zone: happy path
+  Given PENDING Scenario: reverse filtering zone: happy path
+  When I select "Cunningham Hall" from "request_building"
+  Then "Unit 2" should be selected from "request_zone"
+  And "Unit 1" should not be selected from "request_zone"
+  Then all of the "areas" in "Cunningham Hall" should be in the "request_area" menu
+  And all of the "areas" in "Martinez Commons" should not be in the "request_area" menu
+

@@ -8,9 +8,10 @@ class Request < ActiveRecord::Base
   validates_format_of :phone, :with => /^[\(\)0-9\- \+\.]{10,20}$/, :message => "Enter a phone number"
   validates_format_of :email, :with => /^[a-zA-Z0-9._-]+@berkeley.edu$/, :message => "Enter a Berkeley email address"
 
-  def to_s
+=begin  def to_s
     return "Name: #{name} \nPhone Number: #{phone} \nEmail: #{email} \nZone: #{zone} \nBuilding: #{building} \nArea: #{area} \nCreated At: #{created_at} \nDescription: #{description}"
   end
+=end
 
   def to_list
     return ["Name: #{name}", "Phone Number: #{phone}", "Email: #{email}", "Zone: #{zone}", "Building: #{building}", "Area: #{area}", "Created_at: #{created_at}", "Description: #{description}"]

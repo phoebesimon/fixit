@@ -2,13 +2,12 @@ require 'spec_helper'
 
 describe RequestsController do
   describe 'new controller action' do
-    it 'should make the zones, buildings, and areas in the database available to the view' do
+    it 'should make the zones and buildings in the database available to the view' do
       zone_list = [mock('Zone', :name => "zone1"), mock('Zone', :name => "zone2")]
       building_list = [mock('Building', :name => "building1"), mock('Building', :name => "building2")]
-      area_list = [mock('Area', :name => "area1"), mock('Area', :name => "area2")]
+
       Zone.stub(:all).and_return(zone_list)
       Building.stub(:all).and_return(building_list)
-      Area.stub(:all).and_return(area_list)
       get :new
       assigns(:zones).should == zone_list.map do |zone|
         zone.name
@@ -17,9 +16,6 @@ describe RequestsController do
         building.name
       end
 
-      assigns(:areas).should == area_list.map do |area|
-        area.name
-      end
     end
   end
 

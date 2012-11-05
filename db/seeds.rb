@@ -39,6 +39,17 @@ buildings.each do |building|
   Building.create!(building)
 end
 
+#unit 1
+unit1 = Zone.find_by_name('Unit 1')
+
+buildings = [
+             {:name => 'Somewhere', :zone => unit1},
+             ]
+
+buildings.each do |building|
+  Building.create!(building)
+end
+
 # seed areas table
 martinez = Building.find_by_name('Martinez Commons')
 cunningham = Building.find_by_name('Cunningham Hall')

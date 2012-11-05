@@ -7,7 +7,6 @@ SimpleCov.start 'rails'
 # files.
 
 require 'cucumber/rails'
-require File.dirname(__FILE__) + '/seeds'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -34,6 +33,7 @@ ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
+
 begin
   DatabaseCleaner.strategy = :transaction
 rescue NameError
@@ -58,7 +58,8 @@ end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-Cucumber::Rails::Database.javascript_strategy = :truncation
+Cucumber::Rails::Database.javascript_strategy = :truncation, {:except => %w[buildings areas zones]}
 
 require 'email_spec'
 require 'email_spec/cucumber'
+

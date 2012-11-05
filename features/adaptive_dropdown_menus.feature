@@ -9,10 +9,17 @@ Background:
   Given I am on the request page
 
 Scenario: filter buildings: happy path
-  Given PENDING filter buildings: happy path
   When I select "Unit 2" from "request_zone"
+  And I wait for 5 seconds
   Then all of the "buildings" in "Unit 2" should be in the "request_building" menu
   And all of the "buildings" in "Unit 1" should not be in the "request_building" menu
+
+Scenario: filter buildings: happy path
+  When I select "Unit 1" from "request_zone"
+  And I wait for 5 seconds
+  Then all of the "buildings" in "Unit 1" should be in the "request_building" menu
+  And all of the "buildings" in "Unit 2" should not be in the "request_building" menu
+
 
 Scenario: filter buildings: sad path (don't actually filter buildings)
   Given PENDING filter buildings: sad path (don't actually filter buildings)

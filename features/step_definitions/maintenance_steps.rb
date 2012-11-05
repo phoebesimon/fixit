@@ -109,6 +109,11 @@ Then /^I should not be logged in$/ do
   assert (@logged == false)
 end
 
+
+When /^I wait for (\d+) seconds?$/ do |secs|
+  sleep secs.to_i
+end
+
 Then /^all of the "(.*?)" in "(.*?)" should( not)? be in the "(.*?)" menu$/ do |child_type, parent_name, negate, menu_name|
   puts negate
   if(child_type == "areas")
@@ -125,6 +130,11 @@ Then /^all of the "(.*?)" in "(.*?)" should( not)? be in the "(.*?)" menu$/ do |
   names = children.map do |child|
     child.name
   end
+
+  #puts "children in db: #{names}"
+  #puts "request zone menu: #{find('#request_zone').text}"
+  #puts "request building menu: #{find('#request_building').text}"
+
   if(negate == " not")
     assert page.has_no_select?(menu_name, :options=>names)
   else

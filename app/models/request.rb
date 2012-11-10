@@ -14,7 +14,7 @@ class Request < ActiveRecord::Base
 =end
 
   def to_list
-    return ["Name: #{name}", "Phone Number: #{phone}", "Email: #{email}", "Zone: #{zone}", "Building: #{building}", "Area: #{area}", "Created_at: #{created_at}", "Description: #{description}"]
+    return ["Name: #{name}", "Phone Number: #{phone}", "Email: #{email}", "Zone: #{zone}", "Building: #{building}", "Area: #{area}", "Description: #{description}"]
   end
 
 end

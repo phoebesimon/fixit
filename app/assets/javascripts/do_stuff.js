@@ -6,16 +6,17 @@ Fixit = {
 	    var building = $('#request_building').val();
 	    if(building === 'Choose a Building'){
 		var zone = $('#request_zone').val();
-		if(building === 'Choose a Zone'){
+		if(zone === 'Choose a Zone'){
 		    
 		} else {
 		    Fixit.onZoneChange();
 		}
 	    } else {
 		Fixit.onBuildingChange();
+	
 	    }
 	} else {
-	    
+	    $("#request_area option:contains(" + area + ")").attr('selected', 'selected'); 
 	}
 	    
     },
@@ -60,9 +61,10 @@ Fixit = {
         return(false);
     },
     updatePartialsOnBuildingChange: function(data){
+	var area = $('#request_area').val();	 
 	$('#request_area').replaceWith(data.area_partial);
 	$("#request_zone option:contains(" + data.zone_name + ")").attr('selected', 'selected');
-
+	$("#request_area option:contains(" + area + ")").attr('selected', 'selected'); 
     }
 };
 $(Fixit.setup);

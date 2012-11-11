@@ -23,6 +23,7 @@ Scenario Outline: submit a request: happy path
   Examples:
    | name | phone number | email | zone | building | area | description |
    | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken |
+   | Phoebe Simon | 18185192118  | phoebesimon| Unit 2 | Cunningham Hall | 102, Bedroom 102 | Light is broken |
 
 Scenario Outline: submit a request: sad path, missing required information
 

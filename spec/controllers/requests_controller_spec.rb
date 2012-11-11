@@ -9,10 +9,10 @@ describe RequestsController do
       Zone.stub(:all).and_return(zone_list)
       Building.stub(:all).and_return(building_list)
       get :new
-      assigns(:zones).should == zone_list.map do |zone|
+      assigns(:zones).should == ['Choose a Zone'] + zone_list.map do |zone|
         zone.name
       end
-      assigns(:buildings).should == building_list.map do |building|
+      assigns(:buildings).should == ['Choose a Building'] + building_list.map do |building|
         building.name
       end
 

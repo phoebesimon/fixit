@@ -15,6 +15,7 @@ class RequestsController < ApplicationController
     end
 
     @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => email, :description => request_hash[:description], :area => area)
+
     @request.status = 'pending'
     if @request.save
       # send an email containing the maintenance request information
@@ -55,15 +56,23 @@ class RequestsController < ApplicationController
     @request = Request.new
 
   end
+  def setup_areas_again
 
+  end
   def setup_areas
-    @zones = Zone.all.map do |zone|
-      zone.name
+    @zones = ['Choose a Zone']
+    Zone.all.each do |zone|
+      @zones << zone.name
     end
-    @buildings = Building.all.map do |building|
-      building.name
+    @buildings = ['Choose a Building']
+    Building.all.each do |building|
+      @buildings << building.name
     end
-    @areas = Area.all.map  {|area|   area.name  }
+    @areas = ['Choose a Building First']
+    Area.all.each do |area|
+      @areas << area.name
+    end
+
   end
 
 end

@@ -1,21 +1,3 @@
-@logged = false
-
-#still to do / make sure this stuff works
-=begin
-Then /^"(.+?)" should receive an email$/ do |address|
-  puts "Deliveries: #{ActionMailer::Base.deliveries}"
-
-  assert (ActionMailer::Base.deliveries.length > 0)
-  email = ActionMailer::Base.deliveries.last # does this work correctly?
-  puts "The received email: #{email}" # figure out the format of this email object thing
-end
-
-Then /^I should see "(.*?)" in the email body$/ do |arg1|
-  email = Mail::TestMailer.deliveries.last
-  #check that the email body contains arg1 - regex match
-end
-=end
-
 Then /^the "(.*?)" should say "(.*?)"$/ do |arg1, arg2|
   pending # express the regexp above with the code you wish you had
 end
@@ -70,9 +52,10 @@ Given /^I have submitted the following requests:$/ do |table|
     Request.create!(new_request)
   end
 end
-Then /^I should puts something$/ do
-  puts current_url
-end
+
+#Then /^I should puts something$/ do
+#  puts current_url
+#end
 
 Then /^(?:|I )should see that my "(.+?)" is "(.+?)"$/ do |fieldname, value|
   text = /#{fieldname}:\s*#{value}/
@@ -95,24 +78,33 @@ And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |zon
 end
 
 Given /^I am not logged in$/ do
-  flunk("don't know how to log in through cas yet")
+  step %Q{I go to the home page}
+  current_path = URI.parse(current_url).path
+  if (/\/requests/ =~ current_path)
+    step %Q{I log out}
+  end
+  assert(true)
+end
+
+Given /^I log out$/ do
+  step %Q{I go to the home page}
+  step %Q{I follow "CAS Logout"}
 end
 
 Then /^I log in$/ do
-  flunk("don't know how to log in yet have to talk to fox")
+  visit '/requests'
+  fill_in 'username', with: 'username'
+  fill_in 'password', with: 'password'
+  click_button 'Login'
 end
 
-Given /^I am logged in$/ do
-  flunk("still don't know how to log in yet")
-end
-
-Then /^I should be logged in$/ do
-  flunk("don't know how to log in yet, so no")
-end
-
-
-Then /^I should not be logged in$/ do
-  assert (@logged == false)
+Then /^I should( not)? be logged in$/ do |negate|
+  step %Q{I go to the home page}
+  if negate
+    assert %Q{I am not on the home page}
+  else
+    assert %Q{I am on the home page}
+  end
 end
 
 
@@ -121,7 +113,7 @@ When /^I wait for (\d+) seconds?$/ do |secs|
 end
 
 Then /^all of the "(.*?)" in "(.*?)" should( not)? be in the "(.*?)" menu$/ do |child_type, parent_name, negate, menu_name|
-  puts negate
+  #puts negate
   if(child_type == "areas")
     parent = Building.find_by_name(parent_name)
     children = Area.find(:all, :conditions => ["building_id = ?", parent.id])

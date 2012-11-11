@@ -14,10 +14,18 @@
     %header.navbar.navbar-fixed-top
       %nav.navbar-inner
         .container
-          UC Berkeley RSSP Maintenance Request
+          #ucb_icon_div
+            -#= image_tag '/images/ucb_icon.png', :id => 'ucb_icon'
+          #header_text_div
+            %h1.title{:id => 'header_text'} UC Berkeley RSSP Maintenance Request
+          
     #main{:role => "main"}
       .container
         .content
           .row
+            - if flash[:notice]
+              #notice.message= flash[:notice]
+            - elsif flash[:warning]
+              #warning.message= flash[:warning]
             = yield
           %footer

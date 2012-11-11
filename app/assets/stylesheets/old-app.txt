@@ -1,10 +1,8 @@
 
+*= require_tree .
+ 
 /*
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
-*/
-
+*= require twitter/bootstrap
 
 #ucb_icon_div{
 float:left;
@@ -53,6 +51,7 @@ a {
   text-decoration: underline;
   font-weight: bold;
 }
+*/
 /*
 .front_page_button {
     color: #000000;
@@ -71,6 +70,7 @@ a {
 }
 */
 
+/*
 .centered_button_holder {
   text-align: center;
 }
@@ -165,3 +165,4 @@ div.field_with_errors input{
   background-color: yellow;
   font-weight: bold;
 }
+*/

@@ -1,5 +1,9 @@
 Fixit = {
-    setup: function() { 
+    setup: function() {
+//	$('.limit').limit({
+//	    maxChars: 250
+//	    counter: $("#counter")
+//    });
 	$('#request_zone').live("change", Fixit.onZoneChange);//pass selected zone
 	$('#request_building').live("change", Fixit.onBuildingChange);//pass selected building
     },

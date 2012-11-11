@@ -24,10 +24,16 @@
   = text_field :request, 'phone'
 
   = label :request, :email, 'Email'
-  = text_field :request, 'email'
+  %div{:class => ["field_with_errors", "input-append"]}
+    %input{:class => "span2", :id => "request_email", :name => "request[email]", :type => "text" }
+      %span{:class=>"add-on"}
+        @berkeley.edu
 
   = label :request, :description, 'Request Description'
-  = text_field :request, 'description'
+  -#  = text_area :request, 'description', :cols=>"20", :rows => "3"
+
+  <div class="field_with_errors"><textarea id="request_description" name="request[description]" data-provide="limit" data-counter="#counter" maxChars="250" placeholder="Enter some text here"></textarea></div>
+  <em id="counter"></em>
   %br
   = submit_tag "Submit", :id=>"submit"
 

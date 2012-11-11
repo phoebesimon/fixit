@@ -8,7 +8,14 @@ class RequestsController < ApplicationController
   def create
     request_hash = params[:request]
     area = Area.find_by_name(request_hash[:area])
-    @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => request_hash[:email], :description => request_hash[:description], :area => area)
+    email = request_hash[:email]
+
+    if email =~ /^[a-zA-Z0-9._-]+$/
+      email += "@berkeley.edu"
+    end
+
+    @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => email, :description => request_hash[:description], :area => area)
+
     @request.status = 'pending'
     if @request.save
       # send an email containing the maintenance request information

@@ -67,3 +67,4 @@ group :test do
 end
 
 gem 'actionmailer'
+gem 'bootstrap-sass', '2.0.4'

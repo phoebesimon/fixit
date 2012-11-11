@@ -29,3 +29,8 @@ Scenario: filter locations: happy path
   And I select "Cunningham Hall" from "request_building"
   Then all of the "areas" in "Cunningham Hall" should be in the "request_area" menu
   And all of the "areas" in "Martinez Commons" should not be in the "request_area" menu
+
+Scenario: reverse filtering of locations
+  When I select "Cunningham Hall" from "request_building"
+  And I wait until all Ajax requests are complete
+  Then "Unit 2" should be selected from "request_zone"

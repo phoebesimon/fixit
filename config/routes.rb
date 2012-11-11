@@ -52,8 +52,10 @@ Fixit::Application.routes.draw do
   resources :requests
   match "request/search" => "requests#search", :as => "search"
   match "request/do_search" => "requests#do_search"
-  match "zones/get_buildings/:name" => "zones#get_buildings"
-  match "buildings/get_areas/:name" => "buildings#get_areas"
+  #match "zones/get_buildings/:name" => "zones#get_buildings"
+  #match "buildings/get_areas/:name" => "buildings#get_areas"
+  match "buildings/get_info/:name" => "buildings#get_info"
+  match "zones/get_info/:name" => "zones#get_info"
   root :to => redirect('/requests')
 
   # See how all your routes lay out with "rake routes"

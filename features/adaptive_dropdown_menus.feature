@@ -31,13 +31,11 @@ Scenario: filter locations: happy path
   And all of the "areas" in "Martinez Commons" should not be in the "request_area" menu
 
 Scenario: reverse filtering of locations
-  Given PENDING reverse filtering of locations
   When I select "Cunningham Hall" from "request_building"
   And I wait until all Ajax requests are complete
   Then "Unit 2" should be selected from "request_zone"
 
-Scenario: resetting dropdown menus
-  Given PENDING resetting dropdown menus
+Scenario: resetting dropdown menus - buildings
   When I select "Unit 2" from "request_zone"
   And I wait until all Ajax requests are complete 
   And I select "Cunningham Hall" from "request_building"
@@ -45,3 +43,12 @@ Scenario: resetting dropdown menus
   And I select "Choose a Building" from "request_building"
   And I wait until all Ajax requests are complete       
   Then all of the "areas" in "Cunningham Hall" should not be in the "request_area" menu
+
+Scenario: resetting dropdown menus - zones
+  When I select "Unit 2" from "request_zone"
+  And I wait until all Ajax requests are complete 
+  And I select "Cunningham Hall" from "request_building"
+  And I wait until all Ajax requests are complete 
+  And I select "Choose a Zone" from "request_zone"
+  And I wait until all Ajax requests are complete       
+  Then all of the "buildings" in "Unit 1" should be in the "request_building" menu

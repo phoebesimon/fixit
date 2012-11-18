@@ -1,8 +1,25 @@
 .centered_button_holder
-  = button_to 'Submit', new_request_path, :class => "front_page_button", :method => :get, :id => 'submit_request'
+  %div
+    %div{:class => "media"}
+      %a{:class => "pull-left submit_maintenance_button media-object", :href => "/requests/new"}
+      %div{:class => "media-body"}
+        %h4{:class => "media-heading"}
+          Submit Request
+        Is something broken in the Residence Halls? Let us know
+        
 
-  %br
-  %br
+    %div{:class => "media"}
+      %a{:class => "pull-left media-object check_status_button", :href => "/request/search"}
+      %div{:class => "media-body"}
+        %h4{:class => "media-heading"}
+          Check Status
+        Need to know how your request is coming along? Check it out here
 
-  = button_to 'Check Status', search_path(), :class => "front_page_button"
+
+
+
+
+
+-#= button_to 'Check Status', search_path(), :class => "front_page_button"
+-#= button_to 'Submit', new_request_path, :class => "front_page_button", :method => :get, :id => 'submit_request'
 

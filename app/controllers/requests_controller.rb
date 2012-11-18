@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   def index
+    render :status => :unauthorized
   end
 
   def search

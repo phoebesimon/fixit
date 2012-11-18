@@ -57,7 +57,7 @@ Fixit::Application.routes.draw do
   match "buildings/get_info/:name" => "buildings#get_info"
   match "zones/get_info/:name" => "zones#get_info"
   root :to => redirect('/requests')
-
+  match "/logout" => "application#logout", :as => "logout"
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

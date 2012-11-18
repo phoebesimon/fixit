@@ -38,4 +38,22 @@ describe RequestsController do
       response.should render_template(:action => "index")
     end
   end
+
+  describe 'prepare_session filter - defined in application controller' do
+    before :each do
+      Time.stub(:now).and_return(Time.new(0))
+    end
+    it 'should redirect to logout_path if the session has timed out' do
+      session[:expiry_time] = Time.new(0) - 10.minutes
+      get :index
+      response.should redirect_to("/logout")
+    end
+
+    it 'should set the session timeout to 30 minutes from now if the session has not timed out' do
+      session[:expiry_time] = Time.new(0) + 10.minutes
+      get :index
+      response.should_not redirect_to("/logout")
+      session[:expiry_time].should == (Time.new(0) + 30.minutes)
+    end
+  end
 end

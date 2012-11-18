@@ -58,6 +58,9 @@ Fixit::Application.routes.draw do
   match "zones/get_info/:name" => "zones#get_info"
   root :to => redirect('/requests')
   match "/logout" => "application#logout", :as => "logout"
+  match '/active' => 'application#active'
+  match '/timeout' => 'application#timeout'
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

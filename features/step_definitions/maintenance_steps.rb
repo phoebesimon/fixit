@@ -1,8 +1,3 @@
-Then /^the "(.*?)" should say "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
-end
-
-
 Then /^the destination should receive an email$/ do
   step %Q{"#{ENV['GMAIL_DEST']}" should receive an email}
 end
@@ -77,38 +72,35 @@ And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |zon
 
 end
 
-Given /^I am not logged in$/ do
-  step %Q{I go to the home page}
-  puts "GOT HERE"
-  current_path = URI.parse(current_url).path
-  if (/\/requests/ =~ current_path)
-    step %Q{I log out}
-  end
-  assert(true)
-end
-
 Given /^I log out$/ do
   step %Q{I go to the home page}
   step %Q{I follow "CalNet Logout"}
 end
 
+Given /^I am not logged in$/ do
+  CASClient::Frameworks::Rails::Filter.fake(nil)
+end
+
 Then /^I log in$/ do
   CASClient::Frameworks::Rails::Filter.fake("fred")
-  #visit '/requests'
-  #fill_in 'username', with: 'username'
-  #fill_in 'password', with: 'password'
-  #click_button 'Login'
+end
+
+Then /^the home page should be inaccessible$/ do
+  lambda {step "I go to the home page"}.should raise_error(ActionController::RoutingError, /No route matches.*?login/)
 end
 
 Then /^I should( not)? be logged in$/ do |negate|
-  step %Q{I go to the home page}
   if negate
-    assert %Q{I am not on the home page}
+    assert CASClient::Frameworks::Rails::Filter.fake_user.nil?
   else
-    assert %Q{I am on the home page}
+    assert CASClient::Frameworks::Rails::Filter.fake_user
   end
 end
 
+Then /^logging out should redirect me to an external site$/ do
+  step "I go to the home page"
+  lambda {step 'I follow "CalNet Logout"'}.should raise_error(ActionController::RoutingError, /No route matches.*?logout/)
+end
 
 When /^I wait for (\d+) seconds?$/ do |secs|
   sleep secs.to_i

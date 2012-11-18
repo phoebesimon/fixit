@@ -35,6 +35,6 @@ Fixit::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  CASClient::Frameworks::Rails::Filter.fake("fred") # pretend to be logged in using cas
+  CASClient::Frameworks::Rails::Filter.fake("fred")
 
 end

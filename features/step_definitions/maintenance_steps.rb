@@ -79,6 +79,7 @@ end
 
 Given /^I am not logged in$/ do
   step %Q{I go to the home page}
+  puts "GOT HERE"
   current_path = URI.parse(current_url).path
   if (/\/requests/ =~ current_path)
     step %Q{I log out}
@@ -88,14 +89,15 @@ end
 
 Given /^I log out$/ do
   step %Q{I go to the home page}
-  step %Q{I follow "CAS Logout"}
+  step %Q{I follow "CalNet Logout"}
 end
 
 Then /^I log in$/ do
-  visit '/requests'
-  fill_in 'username', with: 'username'
-  fill_in 'password', with: 'password'
-  click_button 'Login'
+  CASClient::Frameworks::Rails::Filter.fake("fred")
+  #visit '/requests'
+  #fill_in 'username', with: 'username'
+  #fill_in 'password', with: 'password'
+  #click_button 'Login'
 end
 
 Then /^I should( not)? be logged in$/ do |negate|

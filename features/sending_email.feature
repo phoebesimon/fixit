@@ -8,7 +8,7 @@ Background:
   Given I am on the home page
 
 Scenario Outline: An email is generated and sent upon request creation
-  When I press "submit_request"
+  When I follow "submit_request"
   Then I should be on the request page
   And I should see "Submit a Request"
   When I enter "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>"

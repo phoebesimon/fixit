@@ -1,4 +1,3 @@
-
 Feature: submit a maintenance request
 
   As a resident of the dorms
@@ -10,7 +9,7 @@ Background:
 
 Scenario Outline: submit a request: happy path
 
-  When I press "submit_request"
+  When I follow "submit_request"
   Then I should be on the request page
   And I should see "Submit a Request"
   When I enter "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>"
@@ -28,7 +27,7 @@ Scenario Outline: submit a request: happy path
 
 Scenario Outline: submit a request: sad path, missing required information
 
-  When I press "submit_request"
+  When I follow "submit_request"
   Then I should be on the request page
   And I should see "Submit a Request"
   When I enter "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>"
@@ -44,7 +43,7 @@ Scenario Outline: submit a request: sad path, missing required information
    | Phoebe Simon | 18185192118 | phoebesimon@berkeley.edu| Unit 2 | Cunningham Hall | 102, Bedroom 102 | | Enter a description |
 
 Scenario Outline: submit a request: sad path, invalid information
-  When I press "submit_request"
+  When I follow "submit_request"
   Then I should be on the request page
   And I should see "Submit a Request"
   When I enter "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>"

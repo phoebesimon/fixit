@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # attr_accessible :title, :body
-  attr_accessor :name, :phone, :email, :default_zone, :default_building
+  attr_accessible :uid
+  attr_accessor :uid
   has_many :requests
 end

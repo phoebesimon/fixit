@@ -6,6 +6,17 @@ class RequestsController < ApplicationController
   end
 
   def create
+    uid = session[:cas_user]
+    if uid.nil?
+      flash[:warning] = "User has not yet logged in"
+      redirect_to "/requests" and return
+    end
+
+    user = User.find_by_uid(:uid)
+    if user.nil?
+      user = User.create!(:uid => uid)
+    end
+
     request_hash = params[:request]
     area = Area.find_by_name(request_hash[:area])
     email = request_hash[:email]
@@ -14,7 +25,7 @@ class RequestsController < ApplicationController
       email += "@berkeley.edu"
     end
 
-    @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => email, :description => request_hash[:description], :area => area)
+    @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => email, :description => request_hash[:description], :area => area, :user => user)
 
     @request.status = 'pending'
     if @request.save

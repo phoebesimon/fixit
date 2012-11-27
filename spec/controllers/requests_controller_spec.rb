@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe RequestsController do
+  before :each do
+    User.create!(:uid => "fred")
+    CASClient::Frameworks::Rails::Filter.fake("fred")
+  end
+
   describe 'new controller action' do
     it 'should make the zones and buildings in the database available to the view' do
       zone_list = [mock('Zone', :name => "zone1"), mock('Zone', :name => "zone2")]

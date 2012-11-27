@@ -63,3 +63,7 @@ Cucumber::Rails::Database.javascript_strategy = :truncation, {:except => %w[buil
 require 'email_spec'
 require 'email_spec/cucumber'
 
+Before do
+  step %Q{I am logged in as "fred"}
+end
+

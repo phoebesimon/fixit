@@ -29,7 +29,13 @@ end
 
 Given /^I have submitted the following requests:$/ do |table|
   table.hashes.each do |request|
+    uid = request["user"]
+    if User.find_by_uid(uid).nil?
+      User.create!(:uid => uid)
+    end
+
     new_request = {}
+    new_request[:user] = User.find_by_uid(:uid)
     area = Area.create!(:name=>request["area"], :building => Building.create!(:name=>request["building"], :zone => Zone.create!(:name =>request["zone"])))
     new_request["area"] = area
     request.each_key do |key|
@@ -40,6 +46,7 @@ Given /^I have submitted the following requests:$/ do |table|
       elsif(key == "area")
       elsif(key == "date requested")
         new_request["created_at"] = request[key]
+      elsif(key == "user")
       else
         new_request[key] = request[key]
       end
@@ -70,6 +77,14 @@ And /^I should see that "(.+?)", "(.+?)", "(.+?)", "(.+?)" are present$/ do |zon
   step %{I should see that my "Location" is "#{area}"}
   step %{I should see that my "Current Status" is "pending"}
 
+end
+
+Given /^I am logged in as "(.+)"$/ do |uid|
+  user = User.find_by_uid(uid)
+  if user.nil?
+    User.create!(:uid => uid)
+  end
+  CASClient::Frameworks::Rails::Filter.fake(uid)
 end
 
 Given /^I log out$/ do

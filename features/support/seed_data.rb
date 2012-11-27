@@ -1,3 +1,3 @@
 Before do
-  require Rails.root.join('db','seeds')
+  require Rails.root.join('features','support', 'test_seed_data')
 end

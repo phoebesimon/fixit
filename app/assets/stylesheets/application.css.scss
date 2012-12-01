@@ -22,41 +22,30 @@ body { padding-top: 60px; }
  width: 160px;
  height:160px;
  display: block;
- background:transparent url('/images/maintenance_icon2.png') center top no-repeat;
+ background-image: url('/images/maintenance_icon.png');
+ background-position:0px 0px;
 }
 
 .submit_maintenance_button:hover {
-  background-image: url('/images/maintenance_icon1.png');
+  background-position: 322px 0px;
 }
 
 .submit_maintenance_button:active{
-  background-image: url('/images/maintenance_icon3.png');
+background-position: 161px 0px;
 }
 
 .check_status_button {
  width: 160px;
  height:160px;
  display: block;
- background:transparent url('/images/search_icon2.png') center top no-repeat;
+ background-image: url('/images/maintenance_icon.png');
+background-position: 0px -161px;   
 }
 
 .check_status_button:hover {
-  background-image: url('/images/search_icon1.png');
+background-position: 322px -161px;
 }
 
 .check_status_button:active{
-  background-image: url('/images/search_icon3.png');
-}
-
-.media-body{
-  margin-bottom: 14%;
-  margin-right: 10%;
-}
-
-.media-heading{
-  padding-top: 3%;
-}
-
-.media-object{
-  margin-bottom: -45px;
+background-position: 161px -161px;
 }

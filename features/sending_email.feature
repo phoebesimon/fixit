@@ -17,13 +17,7 @@ Scenario Outline: An email is generated and sent upon request creation
   And I should see "Request submitted" 
   Then the destination should receive an email
   When I open the email
-  And I should see "Name: Phoebe Simon" in the email body
-  And I should see "Phone Number: 18185192118" in the email body
-  And I should see "Email: phoebesimon@berkeley.edu" in the email body  
-  And I should see "Zone: Unit 2" in the email body
-  And I should see "Building: Cunningham Hall" in the email body
-  And I should see "Area: 102, Bedroom 102" in the email body
-  And I should see "Description: Light is broken" in the email body
+  Then the email body should contain these strings: "Name: <name>|Phone Number: <phone number>|Email: <email>|Zone: <zone>|Building: <building>|Area: <area>|Description: <description>"
 
 Examples:
    | name | phone number | email | zone | building | area | description |

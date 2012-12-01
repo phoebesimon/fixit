@@ -61,6 +61,19 @@ end
 #  puts current_url
 #end
 
+Then /^the page should( not)? contain these strings: "(.*?)"$/ do |negate, arg1|
+  arg1.split("|").each do |s|
+    step %Q{I should#{negate} see "#{s}"}
+  end
+end
+
+Then /^the email body should contain these strings: "(.*?)"$/ do |arg1|
+  arg1.split("|").each do |s|
+    step %Q{I should see "#{s}" in the email body}
+  end
+end
+
+
 Then /^(?:|I )should see that my "(.+?)" is "(.+?)"$/ do |fieldname, value|
   text = /#{fieldname}:\s*#{value}/
   #  if page.respond_to? :should

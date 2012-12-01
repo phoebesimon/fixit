@@ -15,21 +15,11 @@ Scenario: view the details of one of my requests: happy path
   Given I am logged in as "fred"
   When I follow "check_status"
   Then I should be on the request status page
-  And I should see "My Requests"
-  And I should see "102, Bedroom 102"
-  And I should see "Light is broken"
-  And I should not see "101, Bedroom 101"
-  And I should not see "fixit"
+  And the page should contain these strings: "My Requests|102, Bedroom 102|Light is broken"
+  And the page should not contain these strings: "101, Bedroom 101|fixit"
   When I follow "Submit"
   Then the destination should receive an email
   When I open the email
-  And I should see "[View Maintenance Request Status] Phoebe Simon from 102, Bedroom 102" in the email subject
-  And I should see "Name: Phoebe Simon" in the email body
-  And I should see "Phone Number: 18185192118" in the email body
-  And I should see "Email: phoebesimon@berkeley.edu" in the email body  
-  And I should see "Zone: Unit 2" in the email body
-  And I should see "Building: Cunningham Hall" in the email body
-  And I should see "Area: 102, Bedroom 102" in the email body
-  And I should see "Description: Light is broken" in the email body
-  
+  Then I should see "[View Maintenance Request Status] Phoebe Simon from 102, Bedroom 102" in the email subject
+  And the email body should contain these strings: "Name: Phoebe Simon|Phone Number: 18185192118|Email: phoebesimon@berkeley.edu|Zone: Unit 2|Building: Cunningham Hall|Area: 102, Bedroom 102|Description: Light is broken"  
 

@@ -15,11 +15,7 @@ Scenario: happy path, look up a previouly submitted request
   Given I fill in "search_request_id" with "1"
   And I press "Search"
   Then I should be on the review page for "1"
-  And I should see "Unit 2"
-  And I should see "Martinez Commons"
-  And I should see "138, Electrical 138"
-  And I should see "Light is broken"
-  And I should see "1"
+  And the page should contain these strings: "Unit 2|Martinez Commons|138, Electrical 138|Light is broken|1"
     
 Scenario: sad path, look up a request that does not exist
   Given I fill in "search_request_id" with "2"

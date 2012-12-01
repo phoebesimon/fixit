@@ -18,7 +18,11 @@
   %tbody
     - @requests.each do |request|
       %tr
-        %td= link_to "Submit", "/requests/send_status_email/#{request.id}"
+        %td 
+          - if (request.id.to_s == @sent_email.to_s)            
+            Submit
+          - else
+            = link_to "Submit", "/requests/send_status_email/#{request.id}"
         %td= request.area
         %td= request.created_at.strftime("%b %d, %Y")
         %td= request.description

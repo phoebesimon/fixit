@@ -24580,3 +24580,10 @@ areas = [
 areas.each do |area|
   Area.create!(area)
 end
+
+admin_users = [
+               {:uid => "873123", :admin_flag=> true}
+             ]
+admin_users.each do |admin_user|
+  User.create!(admin_user)
+end

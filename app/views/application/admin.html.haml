@@ -1,0 +1,6 @@
+-# This file is app/view/layouts/index.html.haml
+%h1 Test
+= form_tag requests_path, :id => "Submit a Request" do 
+  
+  = label :request, :zone, 'Zone'
+  = file_field 'upload', 'datafile'

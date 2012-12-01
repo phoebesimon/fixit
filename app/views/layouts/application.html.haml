@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
-    %title= content_for?(:title) ? yield(:title) : "Myapp"
+    %title= content_for?(:title) ? yield(:title) : "UCB Fixit"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
     = stylesheet_link_tag    "application", :media => "all"
@@ -19,6 +19,7 @@
           #header_text_div
             %h2.title{:id => 'header_text'} UC Berkeley RSSP Maintenance Request
           = link_to 'CalNet Logout', logout_path()
+          = link_to 'Admin', admin_path()
     #main{:role => "main"}
       .container
         .content

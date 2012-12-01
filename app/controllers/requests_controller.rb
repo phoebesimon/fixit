@@ -4,10 +4,6 @@ class RequestsController < ApplicationController
 
   def create
     uid = session[:cas_user]
-    if uid.nil?
-      flash[:warning] = "User has not yet logged in"
-      redirect_to "/requests" and return
-    end
 
     user = User.find_by_uid(uid)
     if user.nil?
@@ -22,7 +18,7 @@ class RequestsController < ApplicationController
       email += "@berkeley.edu"
     end
 
-    @request = Request.new(:zone => request_hash[:zone], :building => request_hash[:building], :name => request_hash[:name], :phone => request_hash[:phone], :email => email, :description => request_hash[:description], :area => area, :user => user)
+    @request = Request.new(:name => request_hash[:name], :phone => request_hash[:phone], :email => email, :description => request_hash[:description], :area => area, :user => user)
 
     @request.status = 'pending'
     if @request.save
@@ -54,14 +50,9 @@ class RequestsController < ApplicationController
   def search
     uid = session[:cas_user]
     user = User.find_by_uid(uid)
-    if user.nil?
-      @requests = nil
-    else
-      @requests = user.requests
-    end
-    if @requests.nil?
-      @requests = []
-    end
+    @requests = nil
+    @requests = user.requests unless user.nil?
+    @requests = [] if @requests.nil?
     @headers = ["Request to See Status", "Location", "Date", "Description"]
 
   end

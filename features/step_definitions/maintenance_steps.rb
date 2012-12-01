@@ -35,9 +35,9 @@ Given /^I have submitted the following requests:$/ do |table|
     end
 
     new_request = {}
-    new_request[:user] = User.find_by_uid(:uid)
-    area = Area.create!(:name=>request["area"], :building => Building.create!(:name=>request["building"], :zone => Zone.create!(:name =>request["zone"])))
-    new_request["area"] = area
+    new_request[:user] = User.find_by_uid(uid)
+    new_request[:area] = Area.find_by_name(request["area"])
+
     request.each_key do |key|
       if(key == "work request number")
         new_request["id"] = request[key]
@@ -51,7 +51,9 @@ Given /^I have submitted the following requests:$/ do |table|
         new_request[key] = request[key]
       end
     end
+
     Request.create!(new_request)
+
   end
 end
 

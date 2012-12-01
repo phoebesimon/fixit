@@ -7,7 +7,7 @@ Feature: look up a previously submitted maintenance request by id
 Background:
   Given I have submitted the following requests:
    | name | phone | email | zone | building | area | description | work request number | date requested |
-   | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 4 | FH Building 8 | 8C42C | Light is broken | 1 | Dec 19, 1991 |
+   | Phoebe Simon | 18185192118  | phoebesimon@berkeley.edu| Unit 2 | Martinex Commons | 138, Electrical 138 | Light is broken | 1 | Dec 19, 1991 |
 
   Given I am on the search page
 
@@ -15,9 +15,9 @@ Scenario: happy path, look up a previouly submitted request
   Given I fill in "search_request_id" with "1"
   And I press "Search"
   Then I should be on the review page for "1"
-  And I should see "Unit 4"
-  And I should see "FH Building 8"
-  And I should see "8C42C"
+  And I should see "Unit 2"
+  And I should see "Martinez Commons"
+  And I should see "138, Electrical 138"
   And I should see "Light is broken"
   And I should see "1"
     

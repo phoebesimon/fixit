@@ -14,4 +14,7 @@ class ApplicationController < ActionController::Base
   def logout
     CASClient::Frameworks::Rails::Filter.logout(self)
   end
+
+  def admin
+  end
 end

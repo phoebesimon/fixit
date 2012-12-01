@@ -25,6 +25,9 @@ module NavigationHelpers
     when /^the search page$/
       '/request/search/'
 
+    when /^the request status page$/
+      '/request/search'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

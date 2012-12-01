@@ -6,4 +6,21 @@
   = text_field :search, 'request_id'
   %br
   = submit_tag "Search"
+
+%br
+%h1 My Requests
+%table{:class => "table table-hover"}
+  %thead
+    %tr
+      - @headers.each do |header|
+        %td
+          %b= header
+  %tbody
+    - @requests.each do |request|
+      %tr
+        %td= link_to "Submit", "/requests/send_status_email/#{request.id}"
+        %td= request.area
+        %td= request.created_at.strftime("%b %d, %Y")
+        %td= request.description
+         
 = button_to "Back to Home", '/requests', :class => "front_page_button", :method => :get, :id=>"home"

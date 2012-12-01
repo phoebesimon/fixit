@@ -2,9 +2,6 @@ class RequestsController < ApplicationController
   def index
   end
 
-  def search
-  end
-
   def create
     uid = session[:cas_user]
     if uid.nil?
@@ -12,7 +9,7 @@ class RequestsController < ApplicationController
       redirect_to "/requests" and return
     end
 
-    user = User.find_by_uid(:uid)
+    user = User.find_by_uid(uid)
     if user.nil?
       user = User.create!(:uid => uid)
     end
@@ -55,6 +52,17 @@ class RequestsController < ApplicationController
   end
 
   def search
+    uid = session[:cas_user]
+    user = User.find_by_uid(uid)
+    if user.nil?
+      @requests = nil
+    else
+      @requests = user.requests
+    end
+    if @requests.nil?
+      @requests = []
+    end
+    @headers = ["Request to See Status", "Location", "Date", "Description"]
 
   end
 
@@ -67,9 +75,11 @@ class RequestsController < ApplicationController
     @request = Request.new
 
   end
+
   def setup_areas_again
 
   end
+
   def setup_areas
     @zones = ['Choose a Zone']
     Zone.all.each do |zone|
@@ -84,6 +94,16 @@ class RequestsController < ApplicationController
       @areas << area.name
     end
 
+  end
+
+  def send_status_email
+    @request = Request.find_by_id(params[:id])
+    email_body = @request.to_list
+    subject_text = "[View Maintenance Request Status] #{@request.name} from #{@request.area}"
+
+    UserMailer.request_view_status_email(email_body, subject_text).deliver!
+    flash[:notice] = "Your status request was received. You should receive an update email from an RSSP staff member shortly."
+    redirect_to '/request/search'
   end
 
 end

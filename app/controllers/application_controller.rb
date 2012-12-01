@@ -6,9 +6,13 @@ class ApplicationController < ActionController::Base
   def prepare_session
     if session[:expiry_time] and session[:expiry_time] < Time.now
       session[:expiry_time] = nil
-      redirect_to logout_path
+      timeout
     end
     session[:expiry_time] = Time.now + 30.minutes
+  end
+
+  def timeout
+
   end
 
   def logout

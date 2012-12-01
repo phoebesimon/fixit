@@ -48,13 +48,13 @@ class RequestsController < ApplicationController
   end
 
   def search
+    @sent_email = params[:sent_email]
     uid = session[:cas_user]
     user = User.find_by_uid(uid)
     @requests = nil
     @requests = user.requests unless user.nil?
     @requests = [] if @requests.nil?
     @headers = ["Request to See Status", "Location", "Date", "Description"]
-
   end
 
   def do_search
@@ -88,13 +88,14 @@ class RequestsController < ApplicationController
   end
 
   def send_status_email
-    @request = Request.find_by_id(params[:id])
+    id = params[:id]
+    @request = Request.find_by_id(id)
     email_body = @request.to_list
     subject_text = "[View Maintenance Request Status] #{@request.name} from #{@request.area}"
 
     UserMailer.request_view_status_email(email_body, subject_text).deliver!
     flash[:notice] = "Your status request was received. You should receive an update email from an RSSP staff member shortly."
-    redirect_to '/request/search'
+    redirect_to :controller => :requests, :action => :search, :sent_email => id
   end
 
 end

@@ -52,6 +52,10 @@ class RequestsController < ApplicationController
   def screpe
     @work_order_id = params[:request_id][:request_id]
     page = Nokogiri::HTML(open('https://maintenance.housing.berkeley.edu/query_wo_results.html?' + @work_order_id))
+    if(/No information/ =~ page.css('td')[0].text.strip)
+      flash[:warning] = "There is no work order with the id: " + @work_order_id + ". Are you sure you formatted the number correctly? (e.g. HM-654321)"
+      redirect_to '/request/search/' and return
+    end
     @building_name = screpe_helper(page, 9, 1)
     @location_id = screpe_helper(page, 10, 1)
     @request_date = screpe_helper(page, 12, 1)

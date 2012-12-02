@@ -29,8 +29,7 @@ Fixit = {
 		            Fixit.onBuildingChange();
 	              
 	          }
-	      }
-	      
+	      }	      
     },
     onZoneChange: function(){
 	      Fixit.getZoneInfo()

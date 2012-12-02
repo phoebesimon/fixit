@@ -62,6 +62,7 @@ Fixit::Application.routes.draw do
   match '/active' => 'application#active'
   match '/timeout' => 'application#timeout'
   match "/admin" => "application#admin", :as => "admin"
+  match "/work_order/" => "requests#screpe"
 
   # See how all your routes lay out with "rake routes"
 

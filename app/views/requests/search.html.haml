@@ -1,9 +1,10 @@
-%h1 Find a Request by ID
+%h1 Find a Work Order by ID (sent via email)
 
-= form_tag "/request/do_search", :id => "Search" do 
+= form_tag "/work_order/", :id => "Search" do 
   
-  = label :request, :id, 'Request Id'
-  = text_field :search, 'request_id'
+  Work Order Number (eg. HM-654321)
+  %br
+  = text_field :request_id, 'request_id'
   %br
   = submit_tag "Search"
 

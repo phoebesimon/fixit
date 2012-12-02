@@ -70,3 +70,4 @@ gem 'actionmailer'
 
 gem 'bootstrap-sass', '2.0.4'
 gem 'rubycas-client'
+gem 'nokogiri'

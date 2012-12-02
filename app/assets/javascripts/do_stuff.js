@@ -29,8 +29,6 @@ Fixit = {
 		            Fixit.onBuildingChange();
 	              
 	          }
-	      } else {
-	          $("#request_area option:contains(" + area + ")").attr('selected', 'selected'); 
 	      }
 	      
     },

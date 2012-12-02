@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class RequestsController < ApplicationController
   def index
   end
@@ -45,6 +47,25 @@ class RequestsController < ApplicationController
       redirect_to requests_path
       return
     end
+  end
+
+  def screpe
+    @work_order_id = params[:request_id][:request_id]
+    page = Nokogiri::HTML(open('https://maintenance.housing.berkeley.edu/query_wo_results.html?' + @work_order_id))
+    @building_name = screpe_helper(page, 9, 1)
+    @location_id = screpe_helper(page, 10, 1)
+    @request_date = screpe_helper(page, 12, 1)
+    @date_closed = screpe_helper(page, 15, 1)
+    @requested_action = screpe_helper(page, 19, 1)
+    @corrective_action = screpe_helper(page, 20, 1)
+    @completed_notice = screpe_helper(page, 22, 0)
+    if(@completed_notice == "")
+      @completed_notice = "Not Done"
+    end
+  end
+
+  def screpe_helper(page, tr, td)
+    return page.css("tr")[tr].css("td")[td].text.strip()
   end
 
   def search

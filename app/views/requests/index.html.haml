@@ -4,7 +4,7 @@
       %a{:class => "pull-left submit_maintenance_button media-object", :href => "/requests/new", :id => 'submit_request'}
       %div{:class => "media-body"}
         %h4{:class => "media-heading"}
-          Submit Request
+          =link_to "Submit Request", new_request_path()
         Is something broken in the Residence Halls? Let us know
         
 
@@ -12,7 +12,7 @@
       %a{:class => "pull-left media-object check_status_button", :href => "/request/search", :id => 'check_status'}
       %div{:class => "media-body"}
         %h4{:class => "media-heading"}
-          Check Status
+          =link_to "Check Status", search_path()
         Need to know how your request is coming along? Check it out here
 
 

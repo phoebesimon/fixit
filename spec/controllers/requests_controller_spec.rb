@@ -55,5 +55,21 @@ describe RequestsController do
       assigns(:corrective_action).should == "06/20/2012 16:10 John Arthu Cvar -"
       assigns(:completed_notice).should == "Requested action has been completed"
     end
+    it 'should show the work order info for a completed order' do
+      controller.stub!(:generate_work_order_uri).and_return('spec/wo_not_completed.html')
+      post :screpe, {:request_id => {:request_id => "test_wo"}}
+      assigns(:building_name).should == "Pat Brown's Grille"
+      assigns(:location_id).should == "PB-Bldg"
+      assigns(:request_date).should == "11/19/2012"
+      assigns(:date_closed).should == ""
+      assigns(:requested_action).should == "PM Weekly Inspection On Kitchen Equipment"
+      assigns(:corrective_action).should == ""
+      assigns(:completed_notice).should == "Not Done"
+    end
+    it 'should redirect to the search page for a bad work order' do
+      controller.stub!(:generate_work_order_uri).and_return('spec/wo_no_information.html')
+      post :screpe, {:request_id => {:request_id => "test_wo"}}
+      response.should redirect_to(search_path())
+    end
   end
 end

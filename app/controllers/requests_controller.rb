@@ -53,8 +53,8 @@ class RequestsController < ApplicationController
     @work_order_id = params[:request_id][:request_id]
     page = Nokogiri::HTML(open(generate_work_order_uri(@work_order_id)))
     if(/No information/ =~ page.css('td')[0].text.strip)
-      flash[:warning] = "There is no work order with the id: " + @work_order_id + ". Are you sure you formatted the number correctly? (e.g. HM-654321)"
-      redirect_to '/request/search/' and return
+      flash[:warning] = "There is no work order with the id: " + @work_order_id + ". Are you sure you formatted the ID correctly? (e.g. HM-654321)"
+      redirect_to search_path and return
     end
     @building_name = screpe_helper(page, 9, 1)
     @location_id = screpe_helper(page, 10, 1)

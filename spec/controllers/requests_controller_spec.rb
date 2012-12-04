@@ -64,7 +64,7 @@ describe RequestsController do
       assigns(:date_closed).should == ""
       assigns(:requested_action).should == "PM Weekly Inspection On Kitchen Equipment"
       assigns(:corrective_action).should == ""
-      assigns(:completed_notice).should == "Not Done"
+      assigns(:completed_notice).should == "Working on it"
     end
     it 'should redirect to the search page for a bad work order' do
       controller.stub!(:generate_work_order_uri).and_return('spec/wo_no_information.html')

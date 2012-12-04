@@ -49,6 +49,93 @@ class RequestsController < ApplicationController
     end
   end
 
+
+  def decodeLocationId(locationId) #returns the corresponding area
+        @building_decoder = {
+      "U1C"=>"Central 1",
+      "CB"=>"Channing Bowditch",
+      "CB-GRD"=>"Channing Bowditch Ground",
+      "CH"=>"Cheney Hall",
+      "CN"=>"Christian Hall",
+      "DE"=>"Deutsch Hall",
+      "FB"=>"Freeborn Hall",
+      "JH"=>"Ida Jackson House",
+      "PU"=>"Putnam Hall",
+      "SL"=>"Slottman Hall",
+      "U1-ALL"=>"Unit 1 All Buildings",
+      "U1-GRD"=>"Unit 1 Ground",
+      "U2C"=>"Central 2",
+      "CU"=>"Cunningham Hall",
+      "DA"=>"Davidson Hall",
+      "EH"=>"Ehman Hall",
+      "GR"=>"Griffiths Hall",
+      "TO"=>"Towle Hall",
+      "U2-ALL"=>"Unit 2 All Buildings",
+      "U2-GRD"=>"Unit 2 Ground",
+      "WA"=>"Wada Hall",
+      "MC"=>"Martinez Commons",
+      "BC-GRD"=>"Beverly Cleary Ground",
+      "BC"=>"Beverly Cleary Hall",
+      "U3C"=>"Central 3",
+      "IS"=>"Ida Sproul Hall",
+      "MV-GRD"=>"Manville Ground",
+      "MV"=>"Manville Hall",
+      "NO"=>"Norton Hall",
+      "PR"=>"Priestley Hall",
+      "SB"=>"Spens Black Hall",
+      "U3-ALL"=>"Unit 3 All Buildings",
+      "U3-GRD"=>"Unit 3 Ground",
+      "BO-GRD"=>"Bowles Ground",
+      "BO"=>"Bowles Hall",
+      "FH1"=>"FH Building 1",
+      "FH2"=>"FH Building 2",
+      "FH3"=>"FH Building 3",
+      "FH4"=>"FH Building 4",
+      "FH5"=>"FH Building 5",
+      "FH6"=>"FH Building 6",
+      "FH7"=>"FH Building 7",
+      "FH8"=>"FH Building 8",
+      "FH9"=>"FH Building 9",
+      "FH-ALL"=>"Foothill All Buildings",
+      "FH-GRD"=>"Foothill Ground",
+      "ST-GRD"=>"Stern Ground",
+      "ST"=>"Stern Hall",
+      "CK1"=>"CK Building 1",
+      "CK2"=>"CK Building 2",
+      "CK3"=>"CK Building 3",
+      "CK4"=>"CK Building 4",
+      "CK6"=>"CK Building 6",
+      "CK7"=>"CK Building 7",
+      "CK8"=>"CK Building 8",
+      "CK9"=>"CK Building 9",
+      "CK11"=>"CK Building 11",
+      "CK12"=>"CK Building 12",
+      "CK13"=>"CK Building 13",
+      "CK16"=>"CK Building 16",
+      "CK17"=>"CK Building 17",
+      "CK18"=>"CK Building 18",
+      "CK19"=>"CK Building 19",
+      "CK20"=>"CK Building 20",
+      "CK-ALL"=>"Clark Kerr Campus All Buildings",
+      "CK-GRD"=>"Clark Kerr Ground"}
+    if( not locationId.index("-"))
+      return nil
+    end
+    building_code = locationId[0..locationId.rindex("-")-1]
+    area_code = locationId[locationId.rindex("-")+1..-1]
+    puts building_code
+    building = Building.find_by_name(@building_decoder[building_code])
+
+    if(building)
+      area = Area.find(:first, :conditions =>
+                       ["name LIKE ? AND building_id = ?",
+                        "#{area_code}%", building.id])
+      return area
+    end
+    return nil
+  end
+
+
   def screpe
     @work_order_id = params[:request_id][:request_id]
     page = Nokogiri::HTML(open(generate_work_order_uri(@work_order_id)))
@@ -63,8 +150,13 @@ class RequestsController < ApplicationController
     @requested_action = screpe_helper(page, 19, 1)
     @corrective_action = screpe_helper(page, 20, 1)
     @completed_notice = screpe_helper(page, 22, 0)
+    area = decodeLocationId(@location_id)
+    if(area)
+      @location_id = area.name
+    end
+
     if(@completed_notice == "")
-      @completed_notice = "Not Done"
+      @completed_notice = "Working on it"
     end
   end
 

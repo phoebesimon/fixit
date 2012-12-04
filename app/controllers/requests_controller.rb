@@ -51,7 +51,7 @@ class RequestsController < ApplicationController
 
   def screpe
     @work_order_id = params[:request_id][:request_id]
-    page = Nokogiri::HTML(open('https://maintenance.housing.berkeley.edu/query_wo_results.html?' + @work_order_id))
+    page = Nokogiri::HTML(open(generate_work_order_uri(@work_order_id)))
     if(/No information/ =~ page.css('td')[0].text.strip)
       flash[:warning] = "There is no work order with the id: " + @work_order_id + ". Are you sure you formatted the number correctly? (e.g. HM-654321)"
       redirect_to '/request/search/' and return
@@ -70,6 +70,11 @@ class RequestsController < ApplicationController
 
   def screpe_helper(page, tr, td)
     return page.css("tr")[tr].css("td")[td].text.strip()
+  end
+
+  #This can be stubed out in test so that we do not make web requests during tests
+  def generate_work_order_uri(id)
+    return 'https://maintenance.housing.berkeley.edu/query_wo_results.html?' + id
   end
 
   def search

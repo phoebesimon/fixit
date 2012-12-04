@@ -43,4 +43,17 @@ describe RequestsController do
       response.should render_template(:action => "index")
     end
   end
+  describe 'screpe method' do
+    it 'should show the work order info for a completed order' do
+      controller.stub!(:generate_work_order_uri).and_return('spec/wo.html')
+      post :screpe, {:request_id => {:request_id => "test_wo"}}
+      assigns(:building_name).should == "Slottman Hall"
+      assigns(:location_id).should == "SL-L05"
+      assigns(:request_date).should == "06/19/2012"
+      assigns(:date_closed).should == "06/22/2012"
+      assigns(:requested_action).should == "please re-core lock to 4GM64 key (per conference's request)"
+      assigns(:corrective_action).should == "06/20/2012 16:10 John Arthu Cvar -"
+      assigns(:completed_notice).should == "Requested action has been completed"
+    end
+  end
 end

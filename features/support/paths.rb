@@ -28,6 +28,9 @@ module NavigationHelpers
     when /^the request status page$/
       '/request/search'
 
+    when /^the work order view page$/
+      '/work_order/'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

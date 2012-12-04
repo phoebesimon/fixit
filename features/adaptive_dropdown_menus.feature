@@ -26,7 +26,9 @@ Scenario: filter buildings: sad path (don't actually filter buildings)
 
 Scenario: filter locations: happy path
   When I select "Unit 2" from "request_zone"
+  And I wait until all Ajax requests are complete	
   And I select "Cunningham Hall" from "request_building"
+  And I wait until all Ajax requests are complete	
   Then all of the "areas" in "Cunningham Hall" should be in the "request_area" menu
   And all of the "areas" in "Martinez Commons" should not be in the "request_area" menu
 

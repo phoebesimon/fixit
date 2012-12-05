@@ -1,3 +1,5 @@
+require 'fakeweb'
+
 Then /^the destination should receive an email$/ do
   step %Q{"#{ENV['GMAIL_DEST']}" should receive an email}
 end
@@ -173,3 +175,6 @@ Then /^"(.*?)" should( not)? be selected from "(.*?)"$/ do |name, negate, menu_n
   end
 end
 
+Given /^I have replaced the path "(.*?)"$/ do |arg1|
+  FakeWeb.register_uri(:get, "https://maintenance.housing.berkeley.edu/query_wo_results.html?#{arg1}", :response => "features/support/#{arg1}_wo_response.txt")
+end

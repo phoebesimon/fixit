@@ -163,8 +163,23 @@ class RequestsController < ApplicationController
   end
 
   def screpe_helper(page, tr, td)
-    return page.css("tr")[tr].css("td")[td].text.strip()
+    table_rows = page.css("tr")
+    if(table_rows) #one big null check
+      table_row = table_rows[tr]
+      if (table_row)
+        table_data = table_row.css("td")
+        if(table_data)
+          table_datum = table_data[td]
+          if(table_datum)
+            return table_datum.text.strip()
+          end
+        end
+      end
+    end
+    return ""
   end
+
+
 
   #This can be stubed out in test so that we do not make web requests during tests
   def generate_work_order_uri(id)

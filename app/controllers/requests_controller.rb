@@ -28,7 +28,12 @@ class RequestsController < ApplicationController
     if @request.save
       # send an email containing the maintenance request information
 
-      email_body = @request.to_list
+      email_body = ["#{@request.name} has submitted the following maitenance request:", ""]
+      @request.to_list.each do |x|
+        email_body << x
+      end
+      email_body << ""
+      email_body << "Please input this into the database and send any correspondance to #{@request.email}. Thank you for your time."
       subject_text = "[Maintenance Request Submitted] #{@request.name} from #{@request.area}"
 
       UserMailer.request_created_email(email_body, subject_text).deliver!
@@ -231,7 +236,12 @@ class RequestsController < ApplicationController
   def send_status_email
     id = params[:id]
     @request = Request.find_by_id(id)
-    email_body = @request.to_list
+    email_body = ["#{@request.name} would like to see the status of the following request:", ""]
+    @request.to_list.each do |x|
+      email_body << x
+    end
+    email_body << ""
+    email_body << "Please send your response to #{@request.email}. Thank you."
     subject_text = "[View Maintenance Request Status] #{@request.name} from #{@request.area}"
 
     UserMailer.request_view_status_email(email_body, subject_text).deliver!

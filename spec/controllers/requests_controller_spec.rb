@@ -43,7 +43,7 @@ describe RequestsController do
       response.should render_template(:action => "index")
     end
   end
-  describe 'screpe method' do
+  describe 'scrape method' do
     it 'should show the work order info for a completed order' do
       controller.stub!(:generate_work_order_uri).and_return('spec/wo.html')
       post :screpe, {:request_id => {:request_id => "test_wo"}}

@@ -16,7 +16,8 @@ end
 
 Then /^the page I should be on is the review page$/ do
   current_path = URI.parse(current_url).path
-  /\/requests\/\d+/ =~ current_path
+  #puts "current path = #{current_path}"
+  assert(/\/requests\/\d+/ =~ current_path)
 end
 
 When /^I enter "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)"/ do |name, phone, email, zone, building, area, description|

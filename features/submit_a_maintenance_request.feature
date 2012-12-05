@@ -14,7 +14,7 @@ Scenario Outline: submit a request: happy path
   And I should see "Submit a Request"
   When I enter "<name>", "<phone number>", "<email>", "<zone>", "<building>", "<area>", "<description>"
   And I press "submit"
-  Then the page I should be on is the review page 
+  Then the page I should be on is the review page
   And I should see that "<zone>", "<building>", "<area>", "<description>" are present
   And I should see "Request submitted"
   Then I press "home"

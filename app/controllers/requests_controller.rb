@@ -14,10 +14,10 @@ class RequestsController < ApplicationController
 
     request_hash = params[:request]
     area = Area.find_by_name(request_hash[:area])
-    email = request_hash[:email]
+    @email = request_hash[:email]
 
-    if email =~ /^[a-zA-Z0-9._-]+$/
-      email += "@berkeley.edu"
+    if @email =~ /^[a-zA-Z0-9._-]+$/
+      email = @email + "@berkeley.edu"
     end
 
     @request = Request.new(:name => request_hash[:name], :phone => request_hash[:phone], :email => email, :description => request_hash[:description], :area => area, :user => user)
@@ -186,7 +186,7 @@ class RequestsController < ApplicationController
   def new
     setup_areas
     @request = Request.new
-
+    @email = nil
   end
 
   def setup_areas_again

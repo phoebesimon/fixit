@@ -24,8 +24,8 @@
   = text_field :request, 'phone'
 
   = label :request, :email, 'Email'
-  %div{:class => ["field_with_errors", "input-append"]}
-    %input{:class => "span2", :id => "request_email", :name => "request[email]", :type => "text" }
+  %div{:class => ["input-append"]}
+    %input{:class => "span2", :id => "request_email", :name => "request[email]", :type => "text", :value => "#{@email}" }
       %span{:class=>"add-on"}
         @berkeley.edu
 

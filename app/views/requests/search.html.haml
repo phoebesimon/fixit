@@ -1,15 +1,15 @@
-%h1 Find a Work Order by ID (sent via email)
+%h3 Find a Work Order by ID
 
-= form_tag "/work_order/", :id => "Search" do 
+= form_tag "/work_order/", :id => "Search", :class => "input-append" do 
   
-  Work Order Number (eg. HM-654321)
   %br
-  = text_field :request_id, 'request_id'
-  %br
-  = submit_tag "Search"
+  = text_field :request_id, 'request_id', :class => "span2", :placeholder => "(e.g. HM-654321)"
+  = submit_tag "Search", :class => "btn"
+%h7 (Don't know your Work Order number? Find your request below)
 
 %br
-%h1 My Requests
+%br
+%h3 My Requests
 %table{:class => "table table-hover"}
   %thead
     %tr

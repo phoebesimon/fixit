@@ -66,14 +66,8 @@ background-position: 160px -161px;
   margin-right: 8%;
 }
 
-div.field_with_errors input{
-  border: 1px solid red;
-  background-color: yellow;
-  font-weight: bold;
-}
-
 div.field_with_errors{
-  color: red;
+  @extend .control-group.error
 }
 
 #warning{

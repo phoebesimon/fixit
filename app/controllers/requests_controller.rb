@@ -16,6 +16,8 @@ class RequestsController < ApplicationController
     area = Area.find_by_name(request_hash[:area])
     @email = request_hash[:email]
     email = @email
+    @description = request_hash[:description]
+
     if email =~ /^[a-zA-Z0-9._-]+$/
       email += "@berkeley.edu"
     end
@@ -203,6 +205,7 @@ class RequestsController < ApplicationController
     setup_areas
     @request = Request.new
     @email = nil
+    @description = nil
   end
 
   def setup_areas_again

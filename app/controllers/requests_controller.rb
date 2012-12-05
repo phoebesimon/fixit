@@ -151,6 +151,7 @@ class RequestsController < ApplicationController
     @corrective_action = screpe_helper(page, 20, 1)
     @completed_notice = screpe_helper(page, 22, 0)
     area = decodeLocationId(@location_id)
+    puts area
     if(area)
       @location_id = area.name
     end

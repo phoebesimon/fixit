@@ -285,12 +285,14 @@ end
 # seed areas table
 martinez = Building.find_by_name('Martinez Commons')
 cunningham = Building.find_by_name('Cunningham Hall')
+channing_bowditch = Building.find_by_name('Channing Bowditch')
 
 areas = [
          {:name => '138, Electrical 138', :building => martinez},
          {:name => '190A, Bedroom 190A', :building => martinez},
          {:name => '101, Bedroom 101', :building => cunningham},
          {:name => '102, Bedroom 102', :building => cunningham},
+         {:name => '338C, Bedroom 338C', :building => channing_bowditch}
         ]
 
 areas.each do |area|
